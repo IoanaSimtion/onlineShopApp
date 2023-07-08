@@ -78,7 +78,7 @@ namespace onlineShop.product.models
             set { description = value; }
         }
 
-        public void descriere()
+        public override string ToString()
         {
             string text = "";
 
@@ -87,6 +87,8 @@ namespace onlineShop.product.models
             text += "Pretul produsului este " + price + "\n";
             text += "Descrierea produsului este " + description + "\n";
             text += "Stocul produsului este " + stock + "\n";
+
+            return text;
         }
 
     }

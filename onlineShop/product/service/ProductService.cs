@@ -10,7 +10,7 @@ namespace onlineShop.product.service
 {
     public class ProductService
     {
-        List<Product> products;
+        private List<Product> products;
 
         public ProductService()
         {
@@ -19,12 +19,13 @@ namespace onlineShop.product.service
             this.load();
         }
 
+        public List<Product> Products { get { return products; } }
         public void load()
         {
             string currentDirectory = Directory.GetCurrentDirectory();
             DirectoryInfo parent = Directory.GetParent(currentDirectory);
 
-            StreamReader streamReader = new StreamReader(parent.FullName + @"/data/users.txt");
+            StreamReader streamReader = new StreamReader(parent.FullName + @"/data/products.txt");
 
             string line = "";
 
@@ -40,7 +41,9 @@ namespace onlineShop.product.service
         {
             for (int i = 0; i < products.Count; i++)
             {
-                Debug.WriteLine(products[i]);
+                Debug.WriteLine("produsul " + i);
+                Debug.WriteLine(products[i]);                
+                
             }
         }
 
@@ -48,5 +51,7 @@ namespace onlineShop.product.service
         {
             return products.Count;
         }
+
+        
     }
 }
