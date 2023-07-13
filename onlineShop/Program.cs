@@ -17,7 +17,7 @@ namespace onlineShop
             ApplicationConfiguration.Initialize();
             //Application.Run(new LoginPage());
             Application.Run(new MainPage());
-            //Application.Run(new Cart());
+            Application.Run(new Cart());
 
             //ProductService produse = new ProductService();
 
@@ -26,6 +26,8 @@ namespace onlineShop
             //UserService users = new UserService();
 
             //users.afisare();
+
+            //CRUD->create read update detele
         }
     }
 }

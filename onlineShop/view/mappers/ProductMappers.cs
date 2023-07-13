@@ -1,4 +1,5 @@
-﻿using onlineShop.product.models;
+﻿using onlineShop.order.models;
+using onlineShop.product.models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,5 @@ namespace onlineShop.view.mappers
         {
             return new Card(product.Id, product.Name, product.Price, product.Description, product.Image, product.Stock, x, y, panel);
         }
-
     }
 }

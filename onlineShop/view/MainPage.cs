@@ -79,7 +79,7 @@ namespace onlineShop.view
             cartIcon.Location = new Point(1855, 20);
             cartIcon.SizeMode = PictureBoxSizeMode.Zoom;
             cartIcon.Size = new Size(52, 41);
-            cartIcon.BackColor = Color.LightSkyBlue;
+            cartIcon.BackColor = Color.FromArgb(74, 85, 162);
 
             cart.Text = "Cart";
             cart.Location = new Point(1857, 65);
@@ -96,7 +96,7 @@ namespace onlineShop.view
 
             pnlHeader = new Panel();
             pnlHeader.Dock = DockStyle.Top;
-            pnlHeader.BackColor = Color.LightSkyBlue;
+            pnlHeader.BackColor = Color.FromArgb(74, 85, 162);
             pnlHeader.Height = 94;
 
             pnlHeader.Controls.Add(titlu);
@@ -115,7 +115,7 @@ namespace onlineShop.view
 
             pnlHeader2 = new Panel();
             pnlHeader2.Dock = DockStyle.Top;
-            pnlHeader2.BackColor = Color.LightBlue;
+            pnlHeader2.BackColor = Color.FromArgb(197, 223, 248);
             pnlHeader2.Height = 53;
 
             pnlHeader2.Controls.Add(produse);

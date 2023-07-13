@@ -140,13 +140,13 @@ namespace onlineShop.view
             titlu.Text = "Online Shop";
             titlu.Size = new Size(300, 100);
             titlu.Location = new Point(850, 130);
-            titlu.Font = new Font("Century Gothic", 24, FontStyle.Bold);
-            titlu.ForeColor = Color.White;
+            titlu.Font = new Font("Century Gothic", 26, FontStyle.Bold);
+            titlu.ForeColor = Color.FromArgb(74, 85, 162);
 
             forgotPassword.Text = "Forgot password";
             forgotPassword.Location = new Point(950, 900);
 
-            pnlContainer.BackColor = Color.LightBlue;
+            pnlContainer.BackColor = Color.FromArgb(197, 223, 248);
             pnlContainer.Dock = DockStyle.Fill;
 
             setLoginContainer();
