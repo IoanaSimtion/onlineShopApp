@@ -1,5 +1,8 @@
 ﻿using onlineShop.product.models;
 using onlineShop.product.service;
+using onlineShop.system.cart;
+using onlineShop.view.containers;
+using onlineShop.view.headers;
 using onlineShop.view.mappers;
 using System;
 using System.Collections.Generic;
@@ -16,25 +19,37 @@ namespace onlineShop.view
     public partial class MainPage : Form
     {
 
-        private Panel pnlContainer;
+        private PnlContainer pnlProductsContainer;
+        private PnlCartContainer pnlCartContainer;
         private Panel pnlHeader;
-        private Panel pnlHeader2;
-        private Button menu;
-        private ComboBox filtru;
-        private Label produse;
+        private Panel pnlTitleHeader;
+        //private Button menu;
+        //private ComboBox filtru;
         private Label titlu;
         private ProductService productService;
+        private CartPanel pnlCart;
+        private HeaderProduse pnlHeaderProduse;
+        private HeaderCart pnlHeaderCart;
+
+        public CartActions cartActions;
 
 
         public MainPage()
         {
             InitializeComponent();
+
             this.productService = new ProductService();
-            setContainer();
-            setHeader2();
-            setHeader();
-            this.WindowState = FormWindowState.Maximized;
+
+            this.pnlProductsContainer=new PnlContainer();
+            setContainer(pnlProductsContainer);
+
             
+            setHeader();
+
+            this.WindowState = FormWindowState.Maximized;
+
+            this.cartActions = new CartActions();             
+
         }
 
         private void MainPage_Load(object sender, EventArgs e)
@@ -52,7 +67,7 @@ namespace onlineShop.view
             for (int i = 0; i < products.Count(); i++)
             {
 
-                Card card = ProductMappers.productToCardMapper(container, products[i], x, y);
+                Card card = ProductMappers.productToCardMapper(container, products[i], x, y,this);
 
                 x += card.Width + 100;
 
@@ -70,7 +85,7 @@ namespace onlineShop.view
             }
         }
 
-        private void setHeader()
+        private void setTitleHeader()
         {
             PictureBox cartIcon = new PictureBox();
             Label cart = new Label();
@@ -80,6 +95,8 @@ namespace onlineShop.view
             cartIcon.SizeMode = PictureBoxSizeMode.Zoom;
             cartIcon.Size = new Size(52, 41);
             cartIcon.BackColor = Color.FromArgb(74, 85, 162);
+
+            cartIcon.Click += cart_Click;
 
             cart.Text = "Cart";
             cart.Location = new Point(1857, 65);
@@ -94,43 +111,100 @@ namespace onlineShop.view
             titlu.Font = new Font("Century Gothic", 18, FontStyle.Bold);
             titlu.ForeColor = Color.White;
 
-            pnlHeader = new Panel();
+            pnlTitleHeader = new Panel();
+            pnlTitleHeader.Dock = DockStyle.Top;
+            pnlTitleHeader.BackColor = Color.FromArgb(74, 85, 162);
+            pnlTitleHeader.Height = 94;
+
+            pnlTitleHeader.Controls.Add(titlu);
+            pnlTitleHeader.Controls.Add(cartIcon);
+            pnlTitleHeader.Controls.Add(cart);
+            this.Controls.Add(pnlTitleHeader);
+        }
+
+        private void setHeader()
+        {
+            this.pnlHeader = new Panel();
+            pnlHeader.Height = 94 + 53;
             pnlHeader.Dock = DockStyle.Top;
-            pnlHeader.BackColor = Color.FromArgb(74, 85, 162);
-            pnlHeader.Height = 94;
 
-            pnlHeader.Controls.Add(titlu);
-            pnlHeader.Controls.Add(cartIcon);
-            pnlHeader.Controls.Add(cart);
+            setTitleHeader();
+            this.pnlHeader.Controls.Add(pnlTitleHeader);
+           
+            this.pnlHeaderProduse = new HeaderProduse();
+            this.pnlHeader.Controls.Add(pnlHeaderProduse);
+
             this.Controls.Add(pnlHeader);
-
+        }
+   
+        private void setContainer(Panel contaier)
+        {           
+            PopulateContainer(contaier);
+            this.Controls.Add(contaier);
 
         }
-        private void setHeader2()
+
+        private void cart_Click(object sender, EventArgs e)
         {
+            this.pnlHeaderCart = new HeaderCart();
+            removeHeaderControl("pnlHeaderProduse");
+            this.pnlHeader.Controls.Add(pnlHeaderCart);
 
-            produse = new Label();
-            produse.Text = "Produse";
-            produse.Location = new Point(10, 15);
+            this.pnlCartContainer = new PnlCartContainer();
+            removeControl("pnlProductsContainer");
+            this.Controls.Add(pnlCartContainer);
 
-            pnlHeader2 = new Panel();
-            pnlHeader2.Dock = DockStyle.Top;
-            pnlHeader2.BackColor = Color.FromArgb(197, 223, 248);
-            pnlHeader2.Height = 53;
+            //MessageBox.Show("da");
 
-            pnlHeader2.Controls.Add(produse);
-            this.Controls.Add(pnlHeader2);
         }
 
-        private void setContainer()
+        public void removeHeaderControl(String name)
         {
-            pnlContainer = new Panel();
-            pnlContainer.Dock = DockStyle.Fill;
-            pnlContainer.BackColor = Color.White;
-            pnlContainer.AutoScroll = true;
-            PopulateContainer(pnlContainer);
 
-            this.Controls.Add(pnlContainer);
+            Control aux = null;
+
+           
+            foreach(Control ctrl in this.pnlHeader.Controls){
+
+                if (ctrl.Name.Equals(name)) 
+                {
+                    aux = ctrl;
+                    PerformLayout();
+                }
+
+            }
+
+            if (aux != null)
+            {
+
+                this.pnlHeader.Controls.Remove(aux);
+                PerformLayout();
+            }
+
+        }
+        
+        public void removeControl(String name)
+        {
+
+            Control aux = null;
+
+           
+            foreach(Control ctrl in this.Controls){
+
+                if (ctrl.Name.Equals(name)) 
+                {
+                    aux = ctrl;
+                    PerformLayout();
+                }
+
+            }
+
+            if (aux != null)
+            {
+
+                this.Controls.Remove(aux);
+                PerformLayout();
+            }
 
         }
     }

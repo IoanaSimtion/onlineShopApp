@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace onlineShop.system.cart
 {
-    internal class CartActions
+    public class CartActions
     {
         private List<CartItem> cartItems;
 
@@ -54,7 +55,7 @@ namespace onlineShop.system.cart
         {
             for(int i = 0; i < cartItems.Count(); i++)
             {
-                //Debug.WriteLine(cartItems[i]);
+                Debug.WriteLine(cartItems[i]);
             }
         }
 

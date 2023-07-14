@@ -21,14 +21,13 @@ namespace onlineShop.view
         private Label titlu;
         private Label cart;
         private Label emptyCart;
-        private OrderService orderService;
+
         public Cart()
         {
             InitializeComponent();
-            orderService = new OrderService();
             setContainer(); 
             setHeader2();
-            setHeader();
+            //setHeader();
             setFooter();
 
             this.WindowState = FormWindowState.Maximized;
@@ -76,9 +75,9 @@ namespace onlineShop.view
         private void PopulateContainer(Panel container)
         {
 
-            List<Order> orders = orderService.Orders;
+            //List<Order> orders = orderService.Orders;
 
-            if (orderService == null)
+            //if (orderService == null)
             {
                 emptyCart = new Label();
                 emptyCart.Text = "Your cart is empty";
@@ -152,5 +151,6 @@ namespace onlineShop.view
             this.Controls.Add(pnlContainer);
 
         }
+
     }
 }

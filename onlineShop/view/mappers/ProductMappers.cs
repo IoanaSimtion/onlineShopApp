@@ -10,9 +10,14 @@ namespace onlineShop.view.mappers
 {
     internal abstract class ProductMappers
     {
-        public static Card productToCardMapper(Panel panel ,Product product, int x, int y)
+        public static Card productToCardMapper(Panel panel ,Product product, int x, int y, MainPage main)
         {
-            return new Card(product.Id, product.Name, product.Price, product.Description, product.Image, product.Stock, x, y, panel);
+            return new Card(product.Id, product.Name, product.Price, product.Description, product.Image, product.Stock, x, y, panel, main);
         }
+
+        //public static CardForCart cartProductMapper(Panel panel, )
+        //{
+
+        //}
     }
 }

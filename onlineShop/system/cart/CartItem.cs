@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace onlineShop.system.cart
 {
-    internal class CartItem
+    public class CartItem
     {
         private string id;
         private int cantitate;

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using onlineShop.system.cart;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,8 +17,11 @@ namespace onlineShop.view
         private Label descriere;
         private Button addCart;
         private Label pret;
+        private string id;
 
-        public Card(string id, string name, float price, string description, string image, int stock, int x, int y, Panel parent)
+        private MainPage mainPage;
+
+        public Card(string id, string name, float price, string description, string image, int stock, int x, int y, Panel parent,MainPage mainPage)
         {
             this.Parent = parent;
             this.Location = new Point(x, y);
@@ -26,6 +30,10 @@ namespace onlineShop.view
             panelHeader(name);
             panelPhoto(image);
             panelContent(description, price, id, stock);
+
+            this.mainPage = mainPage;
+            this.id = id;
+           
         }
 
         private void panelHeader(string name)
@@ -84,6 +92,8 @@ namespace onlineShop.view
             //addCart.Dock = DockStyle.Left;
             addCart.BackColor = Color.White;
 
+            addCart.Click += addCart_Click;
+
             pret = new Label();
             pret.Width = 110;
             pret.Text = "Price: $" + price.ToString();
@@ -102,5 +112,11 @@ namespace onlineShop.view
             pnlContent.BringToFront();
         }
 
+        private void addCart_Click(object sender, EventArgs e)
+        {
+
+            this.mainPage.cartActions.addItem(new CartItem(id, 1));
+
+        }
     }
 }
