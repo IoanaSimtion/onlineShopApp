@@ -22,6 +22,7 @@ namespace onlineShop.view
         private PnlContainer pnlProductsContainer;
         private PnlCartContainer pnlCartContainer;
         private Panel pnlHeader;
+        private Panel pnlContainer;
         private Panel pnlTitleHeader;
         //private Button menu;
         //private ComboBox filtru;
@@ -41,8 +42,7 @@ namespace onlineShop.view
             this.productService = new ProductService();
 
             this.pnlProductsContainer=new PnlContainer();
-            setContainer(pnlProductsContainer);
-
+            setContainer();
             
             setHeader();
 
@@ -137,11 +137,14 @@ namespace onlineShop.view
             this.Controls.Add(pnlHeader);
         }
    
-        private void setContainer(Panel contaier)
-        {           
-            PopulateContainer(contaier);
-            this.Controls.Add(contaier);
+        private void setContainer()
+        {
+            this.pnlContainer = new Panel();
+            this.pnlContainer.Dock = DockStyle.Fill;
+            PopulateContainer(pnlProductsContainer);
+            this.pnlContainer.Controls.Add(pnlProductsContainer);
 
+            this.Controls.Add(pnlContainer);
         }
 
         private void cart_Click(object sender, EventArgs e)
@@ -151,8 +154,8 @@ namespace onlineShop.view
             this.pnlHeader.Controls.Add(pnlHeaderCart);
 
             this.pnlCartContainer = new PnlCartContainer();
-            removeControl("pnlProductsContainer");
-            this.Controls.Add(pnlCartContainer);
+            removeContainerControl("pnlProductsContainer");
+            this.pnlContainer.Controls.Add(pnlCartContainer);
 
             //MessageBox.Show("da");
 
@@ -183,14 +186,13 @@ namespace onlineShop.view
 
         }
         
-        public void removeControl(String name)
+        public void removeContainerControl(String name)
         {
 
             Control aux = null;
 
            
-            foreach(Control ctrl in this.Controls){
-
+            foreach(Control ctrl in this.pnlContainer.Controls){
                 if (ctrl.Name.Equals(name)) 
                 {
                     aux = ctrl;
@@ -202,7 +204,7 @@ namespace onlineShop.view
             if (aux != null)
             {
 
-                this.Controls.Remove(aux);
+                this.pnlContainer.Controls.Remove(aux);
                 PerformLayout();
             }
 
