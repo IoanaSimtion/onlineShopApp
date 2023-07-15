@@ -9,7 +9,7 @@ namespace onlineShop.view.headers
     internal class Header : Panel
     {
         private Label text;
-        public Header()
+        public Header(Panel panel)
         {
             text = new Label();
             text.Text = "Text";

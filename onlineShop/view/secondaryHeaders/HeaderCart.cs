@@ -8,7 +8,7 @@ namespace onlineShop.view.headers
 {
     internal class HeaderCart : Header
     {
-        public HeaderCart()
+        public HeaderCart(Panel panel) : base(panel)
         {
             base.ResetText();
             base.Label = "Your cart";

@@ -8,7 +8,7 @@ namespace onlineShop.view.headers
 {
     internal class HeaderProduse : Header
     {
-        public HeaderProduse()
+        public HeaderProduse(Panel panel) : base(panel)
         {
             base.ResetText();
             base.Label = "Produse";
