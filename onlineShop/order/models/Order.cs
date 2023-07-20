@@ -10,18 +10,20 @@ namespace onlineShop.order.models
     {
         private string id;
         private string customerId;
-        private int ammount;
 
-        public Order()
+        public Order(string properties)
         {
+            string[] propr = properties.Split(",");
 
+            this.id = propr[0];
+            this.customerId = propr[1];
+            
         }
 
-        public Order(string id, string customerId, int ammount)
+        public Order(string id, string customerId)
         {
             this.id = id;
             this.customerId = customerId;
-            this.ammount = ammount;
         }
 
         public string Id
@@ -34,12 +36,6 @@ namespace onlineShop.order.models
         {
             get { return customerId; }
             set { customerId = value; }
-        }
-
-        public int Ammount
-        {
-            get { return ammount; }
-            set { ammount = value; }
         }
     }
 }

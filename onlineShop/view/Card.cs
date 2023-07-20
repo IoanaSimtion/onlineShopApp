@@ -1,4 +1,5 @@
-﻿using System;
+﻿using onlineShop.system.cart;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,8 +17,11 @@ namespace onlineShop.view
         private Label descriere;
         private Button addCart;
         private Label pret;
+        private string id;
 
-        public Card(string id, string name, float price, string description, string image, int stock, int x, int y, Panel parent)
+        private MainPage mainPage;
+
+        public Card(string id, string name, float price, string description, string image, int stock, int x, int y, Panel parent,MainPage mainPage)
         {
             this.Parent = parent;
             this.Location = new Point(x, y);
@@ -26,6 +30,10 @@ namespace onlineShop.view
             panelHeader(name);
             panelPhoto(image);
             panelContent(description, price, id, stock);
+
+            this.mainPage = mainPage;
+            this.id = id;
+           
         }
 
         private void panelHeader(string name)
@@ -39,7 +47,7 @@ namespace onlineShop.view
 
             pnlHeader = new Panel();
             pnlHeader.Dock = DockStyle.Top;
-            pnlHeader.BackColor = Color.LightBlue;
+            pnlHeader.BackColor = Color.FromArgb(160, 191, 224);
             pnlHeader.Size = new Size(50, 50);
             pnlHeader.Controls.Add(titlu);
             Controls.Add(pnlHeader);
@@ -49,7 +57,7 @@ namespace onlineShop.view
         private void panelPhoto(string path)
         {
             pozaProdus = new PictureBox();
-            pozaProdus.Width = 120;
+            pozaProdus.Width = 200;
             pozaProdus.Image = Image.FromFile(path);
             pozaProdus.SizeMode = PictureBoxSizeMode.Zoom;
             pozaProdus.Location = new Point(0, 0);
@@ -57,9 +65,11 @@ namespace onlineShop.view
 
             pnlPhoto = new Panel();
             pnlPhoto.Dock = DockStyle.Left;
-            pnlPhoto.BackColor = Color.LightCyan;
+            pnlPhoto.BackColor = Color.White;
             pnlPhoto.Width = 120;
+            pnlPhoto.BorderStyle = BorderStyle.FixedSingle;
             pnlPhoto.Controls.Add(pozaProdus);
+            
             Controls.Add(pnlPhoto);
         }
 
@@ -72,24 +82,28 @@ namespace onlineShop.view
             descriere.Width = 360;
             descriere.Height = 200;
             descriere.BackColor = Color.White;
+            descriere.BorderStyle = BorderStyle.FixedSingle;
 
             addCart = new Button();
             addCart.Text = "Add to cart";
-            addCart.Font = new Font("Century Gothic", 10, FontStyle.Regular);
+            addCart.Font = new Font("Century Gothic", 11, FontStyle.Regular);
             addCart.Location = new Point(240, 280);
             addCart.Size = new Size(150, 40);
             //addCart.Dock = DockStyle.Left;
             addCart.BackColor = Color.White;
 
+            addCart.Click += addCart_Click;
+
             pret = new Label();
-            pret.Text = "Price: " + price.ToString();
-            pret.Font = new Font("Century Gothic", 10, FontStyle.Regular);
+            pret.Width = 110;
+            pret.Text = "Price: $" + price.ToString();
+            pret.Font = new Font("Century Gothic", 12, FontStyle.Regular);
             pret.Location = new Point(30, 285);
             pret.BackColor = Color.White;
 
             pnlContent = new Panel();
             pnlContent.Dock = DockStyle.Fill;
-            pnlContent.BackColor = Color.Lavender;
+            pnlContent.BackColor = Color.FromArgb(240, 251, 255);
 
             pnlContent.Controls.Add(descriere);
             pnlContent.Controls.Add(addCart);
@@ -98,5 +112,11 @@ namespace onlineShop.view
             pnlContent.BringToFront();
         }
 
+        private void addCart_Click(object sender, EventArgs e)
+        {
+
+            this.mainPage.cartActions.addItem(new CartItem(id, 1));
+
+        }
     }
 }

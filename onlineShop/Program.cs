@@ -12,11 +12,15 @@ namespace onlineShop
         [STAThread]
         static void Main()
         {
-            // To customize application configuration such as set high DPI settings or default font,
-            // see https://aka.ms/applicationconfiguration.
+
             ApplicationConfiguration.Initialize();
+
             //Application.Run(new LoginPage());
+
+
             Application.Run(new MainPage());
+
+
             //Application.Run(new Cart());
 
             //ProductService produse = new ProductService();
@@ -26,6 +30,8 @@ namespace onlineShop
             //UserService users = new UserService();
 
             //users.afisare();
+
+            //CRUD->create read update detele
         }
     }
 }
