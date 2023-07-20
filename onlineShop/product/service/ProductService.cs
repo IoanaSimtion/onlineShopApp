@@ -52,6 +52,16 @@ namespace onlineShop.product.service
             return products.Count;
         }
 
-        
+        public Product findProductById(string id)
+        {
+            foreach(Product product in products)
+            {
+                if (product.Id.Equals(id))
+                {
+                    return product;
+                }
+            }
+            return null;
+        }
     }
 }
