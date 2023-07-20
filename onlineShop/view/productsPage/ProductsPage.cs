@@ -17,7 +17,7 @@ namespace onlineShop.view.productsPage
             this.Name = Constants.PRODUCTS_PANEL;
             this.Dock = DockStyle.Fill;           
             this.Controls.Add(new PnlProductsContainer(this, form));           
-            this.Controls.Add(new ProductsHeader(this));
+            this.Controls.Add(new ProductsHeader(this, form));
            
             form.Controls.Add(this);
         }

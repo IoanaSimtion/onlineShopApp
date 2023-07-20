@@ -11,9 +11,9 @@ namespace onlineShop.view.containers
     internal class PnlCartContainer : PnlContainer
     {
         private CartFooter cartFooter;
-        public PnlCartContainer(Panel panel) : base(panel)
+        public PnlCartContainer(Panel panel, MainPage mainPage) : base(panel)
         {
-            cartFooter = new CartFooter();
+            cartFooter = new CartFooter(panel, mainPage);
             base.Controls.Add(cartFooter);
             this.Name = Constants.CART_CONTAINER;
         }

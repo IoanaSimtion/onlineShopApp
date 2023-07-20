@@ -13,6 +13,7 @@ namespace onlineShop.view.headers
             base.ResetText();
             base.Label = "Your cart";
             base.Name = "pnlHeaderCart";
+            
         }
     }
 }

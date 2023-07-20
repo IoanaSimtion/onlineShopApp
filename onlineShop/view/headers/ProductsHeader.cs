@@ -1,4 +1,5 @@
 ﻿using onlineShop.utils;
+using onlineShop.view.cartPage;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,12 +8,18 @@ using System.Threading.Tasks;
 
 namespace onlineShop.view.headers
 {
+    
     internal class ProductsHeader : MainHeader
     {
         private PictureBox cartIcon;
         private Label cart;
-        public ProductsHeader(Panel panel) : base(panel)
+        MainPage form;
+        Panel pnl;
+        public ProductsHeader(Panel panel, MainPage mainPage) : base(panel)
         {
+            this.form = mainPage;
+            this.pnl = panel;
+
             this.Name = Constants.PRODUCTS_HEADER;
             base.Height = 94 + 53;
             
@@ -41,15 +48,11 @@ namespace onlineShop.view.headers
         }
         private void cart_Click(object sender, EventArgs e)
         {
-            //this.pnlHeaderCart = new HeaderCart();
-            //removeHeaderControl("pnlHeaderProduse");
-            //this.pnlHeader.Controls.Add(pnlHeaderCart);
+            form.removeControl("pnlProducts");
 
-            //this.pnlCartContainer = new PnlCartContainer();
-            //removeContainerControl("pnlProductsContainer");
-            //this.pnlContainer.Controls.Add(pnlCartContainer);
+            this.PerformLayout();
 
-            //MessageBox.Show("da");
+            form.setCartPage();                        
 
         }
     }

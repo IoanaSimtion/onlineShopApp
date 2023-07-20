@@ -19,10 +19,12 @@ namespace onlineShop.view.headers
 
             //this.Dock = DockStyle.Top;
             this.Location = new Point(0, 94);
+            //this.Dock = DockStyle.Top;
             this.BackColor = Color.FromArgb(197, 223, 248);
             this.Height = 53;
             this.Width = 2000;
             this.Name = "pnlHeader";
+            this.BringToFront();
 
             this.Controls.Add(text);
         }

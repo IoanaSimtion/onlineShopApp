@@ -10,8 +10,12 @@ namespace onlineShop.view.footers
     {
         private Button checkout;
         private Button continueShopping;
-        public CartFooter()
+        MainPage form;
+        public CartFooter(Panel panel, MainPage mainPage)
         {
+
+            this.form = mainPage;
+
             checkout = new Button();
             continueShopping = new Button();
 
@@ -29,6 +33,8 @@ namespace onlineShop.view.footers
             continueShopping.ForeColor = Color.FromArgb(74, 85, 162);
             continueShopping.BackColor = Color.White;
 
+            continueShopping.Click += continueShopping_Click;
+
             this.Dock = DockStyle.Bottom;
             this.BackColor = Color.FromArgb(197, 223, 248);
             this.Height = 150;
@@ -36,6 +42,16 @@ namespace onlineShop.view.footers
             this.Controls.Add(checkout);
             this.Controls.Add(continueShopping);
         }
-    
+
+        private void continueShopping_Click(object sender, EventArgs e)
+        {
+            form.removeControl("pnlCart");
+
+            this.PerformLayout();
+
+            form.setProductsPage();
+
+        }
+
     }
 }

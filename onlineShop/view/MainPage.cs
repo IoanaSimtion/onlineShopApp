@@ -1,6 +1,7 @@
 ﻿using onlineShop.product.models;
 using onlineShop.product.service;
 using onlineShop.system.cart;
+using onlineShop.view.cartPage;
 using onlineShop.view.containers;
 using onlineShop.view.headers;
 using onlineShop.view.home;
@@ -32,131 +33,60 @@ namespace onlineShop.view
 
             this.WindowState = FormWindowState.Maximized;
 
-            //this.pnlProductsContainer=new PnlContainer();
-            //setContainer();
-            //setHeader();
-
             //setHomePage();
 
             setProductsPage();
 
-            
-
-                       
+            //setCartPage()                       
 
         }
 
-        private void MainPage_Load(object sender, EventArgs e)
+        public void MainPage_Load(object sender, EventArgs e)
         {
 
         }
 
 
-        private void setHomePage()
+        public void setHomePage()
         {
             Home home = new Home(this);
         }
 
-        private void setProductsPage()
+        public void setProductsPage()
         {
             ProductsPage productsPage = new ProductsPage(this);
         }
 
-        private void setCartPage()
+        public void setCartPage()
         {
+            Cart cart = new Cart(this);
 
         }
 
-
-        
-
-        
-
-        //private void setHeader()
-        //{
-        //    this.pnlHeader = new Panel();
-        //    pnlHeader.Height = 94 + 53;
-        //    pnlHeader.Dock = DockStyle.Top;
-
-        //    this.pnlHeader.Controls.Add(pnlTitleHeader);
-           
-        //    this.pnlHeaderProduse = new HeaderProduse();
-        //    this.pnlHeader.Controls.Add(pnlHeaderProduse);
-
-        //    this.Controls.Add(pnlHeader);
-        //}
-   
-        //private void setContainer()
-        //{
-        //    this.pnlContainer = new Panel();
-        //    this.pnlContainer.Dock = DockStyle.Fill;
-        //    PopulateContainer(pnlProductsContainer);
-        //    this.pnlContainer.Controls.Add(pnlProductsContainer);
-
-        //    this.Controls.Add(pnlContainer);
-        //}
-
-        //private void cart_Click(object sender, EventArgs e)
-        //{
-        //    this.pnlHeaderCart = new HeaderCart();
-        //    removeHeaderControl("pnlHeaderProduse");
-        //    this.pnlHeader.Controls.Add(pnlHeaderCart);
-
-        //    this.pnlCartContainer = new PnlCartContainer();
-        //    removeContainerControl("pnlProductsContainer");
-        //    this.pnlContainer.Controls.Add(pnlCartContainer);
-
-        //    //MessageBox.Show("da");
-
-        //}
-
-        public void removeHeaderControl(String name)
+    public void removeControl(String name)
         {
 
-            //Control aux = null;
+            Control aux = null;
 
-           
-            //foreach(Control ctrl in this.pnlHeader.Controls){
 
-            //    if (ctrl.Name.Equals(name)) 
-            //    {
-            //        aux = ctrl;
-            //        PerformLayout();
-            //    }
+            foreach (Control ctrl in this.Controls)
+            {
 
-            //}
+                if (ctrl.Name.Equals(name))
+                {
+                    aux = ctrl;
+                    PerformLayout();
+                }
 
-            //if (aux != null)
-            //{
+            }
 
-            //    this.pnlHeader.Controls.Remove(aux);
-            //    PerformLayout();
-            //}
-
-        }
-        
-        public void removeContainerControl(String name)
-        {
-
-            //Control aux = null;
-
-           
-            //foreach(Control ctrl in this.pnlContainer.Controls){
-            //    if (ctrl.Name.Equals(name)) 
-            //    {
-            //        aux = ctrl;
-            //        PerformLayout();
-            //    }
-
-            //}
-
-            //if (aux != null)
-            //{
-
-            //    this.pnlContainer.Controls.Remove(aux);
-            //    PerformLayout();
-            //}
+            if (aux != null)
+            {
+                this.Controls.Remove(aux);
+                PerformLayout();
+            }
 
         }
+    
     }
 }
