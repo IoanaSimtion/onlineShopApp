@@ -27,6 +27,7 @@ namespace onlineShop.view.headers
             this.BringToFront();
 
             this.Controls.Add(text);
+
         }
 
         public string Label

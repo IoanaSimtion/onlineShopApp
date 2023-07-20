@@ -20,7 +20,7 @@ namespace onlineShop.view.headers
             this.Name = Constants.PRODUCTS_HEADER;
             base.Height = 94 + 53;
 
-            base.Controls.Add(new HeaderCart(this));
+            panel.Controls.Add(new HeaderCart(this));
         }
     }
 }

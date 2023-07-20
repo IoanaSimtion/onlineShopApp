@@ -21,8 +21,7 @@ namespace onlineShop.view.headers
             this.pnl = panel;
 
             this.Name = Constants.PRODUCTS_HEADER;
-            base.Height = 94 + 53;
-            
+            base.Height = 94 + 53;           
 
             cartIcon = new PictureBox();
             cart = new Label();
@@ -41,10 +40,10 @@ namespace onlineShop.view.headers
             cart.ForeColor = Color.White;
             cart.Font = new Font("Century Gothic", 10, FontStyle.Bold);
 
-
-            base.Controls.Add(new HeaderProduse(this));
+            panel.Controls.Add(new HeaderProduse(this));
             base.Controls.Add(cart);
             base.Controls.Add(cartIcon);
+
         }
         private void cart_Click(object sender, EventArgs e)
         {

@@ -13,6 +13,7 @@ namespace onlineShop.view.headers
             base.ResetText();
             base.Label = "Produse";
             base.Name = "pnlHeaderProduse";
+            //base.Dock = DockStyle.Bottom;
         }
     }
 }
