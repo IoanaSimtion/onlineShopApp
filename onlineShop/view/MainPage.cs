@@ -37,8 +37,7 @@ namespace onlineShop.view
 
             setProductsPage();
 
-            //setCartPage()                       
-
+            //setCartPage()      
         }
 
         public void MainPage_Load(object sender, EventArgs e)

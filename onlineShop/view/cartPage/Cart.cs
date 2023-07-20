@@ -1,5 +1,6 @@
 ﻿using onlineShop.utils;
 using onlineShop.view.containers;
+using onlineShop.view.footers;
 using onlineShop.view.headers;
 using System;
 using System.Collections.Generic;
@@ -17,8 +18,12 @@ namespace onlineShop.view.cartPage
 
             this.Dock = DockStyle.Fill;
 
+           
             this.Controls.Add(new PnlCartContainer(this, form));
+            this.Controls.Add(new CartFooter(this, form));
             this.Controls.Add(new CartHeader(this, form));
+
+            
             
             //this.Controls.Add(new CartFooter(this));
             form.Controls.Add(this);
