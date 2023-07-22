@@ -1,4 +1,5 @@
-﻿using System;
+﻿using onlineShop.system.cart;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,18 +16,22 @@ namespace onlineShop.view
         private Label descriere;
         private Button remove;
         private Label pret;
-        private Label cantitate;
-        public OrderCard(Panel parent, string id, string name, float price, string description, int amount, int x, int y)
+        private ComboBox cantitate;
+        private MainPage mainPage;
+        private string id;
+        public OrderCard(MainPage form, Panel parent, string id, string name, float price, string description, int amount, int x, int y)
         {
+            this.mainPage = form;
             this.Parent = parent;
             this.Location = new Point(x, y);
-            this.Width = 950;
+            this.Width = 930;
             this.Height = 250;
-            panelHeader(name);
-            panelContent(description, price, amount);
+            this.id = id;
+            panelHeader(name, amount);
+            panelContent(description, price);
         }
 
-        private void panelHeader(string name)
+        private void panelHeader(string name, int amount)
         {
             titlu = new LinkLabel();
             titlu.Text = name;
@@ -34,21 +39,33 @@ namespace onlineShop.view
             titlu.Font = new Font("Century Gothic", 14, FontStyle.Regular);
             titlu.Size = new Size(100, 100);
 
+            cantitate = new ComboBox();
+            cantitate.Text = amount.ToString();
+            cantitate.Location = new Point(830, 10);
+            cantitate.Width = 50;
+            cantitate.Items.Add("1");
+            cantitate.Items.Add("2");
+            cantitate.Items.Add("3");
+            cantitate.Items.Add("4");
+            cantitate.Items.Add("5");
+            cantitate.Items.Add("6");
+            cantitate.Items.Add("7");
+            cantitate.Items.Add("8");
+            cantitate.Items.Add("9");
+            cantitate.Items.Add("10");
 
             pnlHeader = new Panel();
             pnlHeader.Dock = DockStyle.Top;
             pnlHeader.BackColor = Color.FromArgb(160, 191, 224);
             pnlHeader.Size = new Size(50, 50);
             pnlHeader.Controls.Add(titlu);
+            pnlHeader.Controls.Add(cantitate);
             Controls.Add(pnlHeader);
 
         }
-        private void panelContent(string description, float price, int amount)
+        private void panelContent(string description, float price)
         {
-            cantitate = new Label();
-            cantitate.Text = amount.ToString();
-            cantitate.Location = new Point(30, 5);
-            cantitate.BorderStyle = BorderStyle.FixedSingle;
+            
 
             descriere = new Label();
             descriere.Text = description + "\n";
@@ -67,6 +84,8 @@ namespace onlineShop.view
             remove.ForeColor = Color.Red;
             remove.BackColor = Color.White;
 
+            remove.Click += remove_Click;
+
             pret = new Label();
             pret.Width = 130;
             pret.Text = "Price: $" + price.ToString();
@@ -83,6 +102,13 @@ namespace onlineShop.view
             pnlContent.Controls.Add(pret);
             Controls.Add(pnlContent);
             pnlContent.BringToFront();
+        }
+
+        private void remove_Click(object sender, EventArgs e)
+        {
+
+            this.mainPage.cartActions.deleteItem(id);
+
         }
     }
 }
