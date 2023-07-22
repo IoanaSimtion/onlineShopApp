@@ -29,9 +29,9 @@ namespace onlineShop.system.cart
             }
         }
 
-        public void deleteItem(CartItem item)
+        public void deleteItem(string id)
         {
-            cartItems.Remove(item);
+            cartItems.Remove(returnItemById(id));
         }
 
         public CartItem returnItemById(string id)
