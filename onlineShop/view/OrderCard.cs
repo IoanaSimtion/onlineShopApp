@@ -1,4 +1,6 @@
 ﻿using onlineShop.system.cart;
+using onlineShop.view.cartPage;
+using onlineShop.view.containers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,6 +21,7 @@ namespace onlineShop.view
         private ComboBox cantitate;
         private MainPage mainPage;
         private string id;
+        private int cantitateProd;
         public OrderCard(MainPage form, Panel parent, string id, string name, float price, string description, int amount, int x, int y)
         {
             this.mainPage = form;
@@ -53,6 +56,7 @@ namespace onlineShop.view
             cantitate.Items.Add("8");
             cantitate.Items.Add("9");
             cantitate.Items.Add("10");
+
 
             pnlHeader = new Panel();
             pnlHeader.Dock = DockStyle.Top;
@@ -104,11 +108,23 @@ namespace onlineShop.view
             pnlContent.BringToFront();
         }
 
+        private void cantitate_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cantitateProd = int.Parse(cantitate.SelectedItem.ToString());
+
+            mainPage.cartActions.updateItem(id, cantitateProd);
+        }
+
+
         private void remove_Click(object sender, EventArgs e)
         {
-
             this.mainPage.cartActions.deleteItem(id);
 
+            mainPage.removeControl("pnlCart");
+
+            this.PerformLayout();
+
+            mainPage.setCartPage();
         }
     }
 }
