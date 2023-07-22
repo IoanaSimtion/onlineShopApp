@@ -19,6 +19,7 @@ namespace onlineShop.view.containers
         public MainPage main;
         public PnlCartContainer(Panel panel, MainPage mainPage) : base(panel)
         {
+
             empty = new Label();
             empty.Text = "Your cart is empty";
             empty.Font = new Font("Century Gothic", 18, FontStyle.Regular);
@@ -30,6 +31,7 @@ namespace onlineShop.view.containers
             this.Controls.Add(empty);
 
             attachOrderCards();
+
         }
 
 
@@ -47,7 +49,7 @@ namespace onlineShop.view.containers
 
                 Product prod = productService.findProductById(item.Id);
 
-                base.Controls.Add(new OrderCard(main, this, prod.Id,prod.Name,prod.Price,prod.Description,item.Cantitate,x,y));
+                base.Controls.Add(new OrderCard(main, this, prod.Id, prod.Name, prod.Price, prod.Description, item.Cantitate, x, y));
 
                 y += 300;
 

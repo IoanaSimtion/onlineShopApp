@@ -60,6 +60,7 @@ namespace onlineShop.view
         {
             Cart cart = new Cart(this);
 
+            this.Controls.Add(cart);
         }
 
     public void removeControl(String name)

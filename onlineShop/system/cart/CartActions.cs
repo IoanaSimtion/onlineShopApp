@@ -31,7 +31,7 @@ namespace onlineShop.system.cart
 
         public void deleteItem(string id)
         {
-            cartItems.Remove(returnItemById(id));
+            cartItems.Remove(returnItemById(id));            
         }
 
         public CartItem returnItemById(string id)

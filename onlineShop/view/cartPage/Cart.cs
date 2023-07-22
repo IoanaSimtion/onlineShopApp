@@ -18,15 +18,39 @@ namespace onlineShop.view.cartPage
 
             this.Dock = DockStyle.Fill;
 
-           
+            this.loadCart(form);
+        }
+
+        public void removeControl(String name)
+        {
+
+            Control aux = null;
+
+
+            foreach (Control ctrl in this.Controls)
+            {
+
+                if (ctrl.Name.Equals(name))
+                {
+                    aux = ctrl;
+                    PerformLayout();
+                }
+
+            }
+
+            if (aux != null)
+            {
+                this.Controls.Remove(aux);
+                PerformLayout();
+            }
+
+        }
+
+        public void loadCart(MainPage form)
+        {
             this.Controls.Add(new PnlCartContainer(this, form));
             this.Controls.Add(new CartFooter(this, form));
             this.Controls.Add(new CartHeader(this, form));
-
-            
-            
-            //this.Controls.Add(new CartFooter(this));
-            form.Controls.Add(this);
         }
     }
 }

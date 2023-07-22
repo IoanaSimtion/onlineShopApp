@@ -26,5 +26,10 @@ namespace onlineShop
         {
 
         }
+
+        private void comboBox1_TextUpdate(object sender, EventArgs e)
+        {
+
+        }
     }
 }
