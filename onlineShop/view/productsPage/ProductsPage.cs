@@ -1,4 +1,5 @@
-﻿using onlineShop.utils;
+﻿using onlineShop.product.service;
+using onlineShop.utils;
 using onlineShop.view.containers;
 using onlineShop.view.headers;
 using System;
@@ -12,11 +13,11 @@ namespace onlineShop.view.productsPage
     internal class ProductsPage : Panel
     {
 
-        public ProductsPage(MainPage form)
+        public ProductsPage(MainPage form, ProductService productService)
         {
             this.Name = Constants.PRODUCTS_PANEL;
             this.Dock = DockStyle.Fill;           
-            this.Controls.Add(new PnlProductsContainer(this, form));           
+            this.Controls.Add(new PnlProductsContainer(this, form, productService));           
             this.Controls.Add(new ProductsHeader(this, form));
            
             form.Controls.Add(this);

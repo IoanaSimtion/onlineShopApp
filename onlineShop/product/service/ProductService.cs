@@ -63,5 +63,91 @@ namespace onlineShop.product.service
             }
             return null;
         }
+
+        public void sortareCrescatorNume()
+        {
+            bool flag = true;
+
+            do
+            {
+                flag = true;
+                for(int i = 0; i < products.Count - 1; i++)
+                {
+                    if (products[i].Name.CompareTo(products[i+1].Name)>0)
+                    {
+                        Product aux = new Product();
+                        aux = products[i];
+                        products[i] = products[i + 1];
+                        products[i + 1] = aux;
+                        flag = false;
+                    }
+                }
+
+            } while (flag == false);
+        } 
+        
+        public void sortareDescrescatorNume()
+        {
+            bool flag = true;
+
+            do
+            {
+                flag = true;
+                for(int i = 0; i < products.Count - 1; i++)
+                {
+                    if (products[i].Name.CompareTo(products[i+1].Name)<0)
+                    {
+                        Product aux = new Product();
+                        aux = products[i];
+                        products[i] = products[i + 1];
+                        products[i + 1] = aux;
+                        flag = false;
+                    }
+                }
+
+            } while (flag == false);
+        }
+
+        public void sortareCrescatorPret()
+        {
+            bool flag = false;
+
+            do
+            {
+                flag = true;
+                for (int i = 0; i < products.Count - 1; i++)
+                {
+                    if (products[i].Price > products[i + 1].Price)
+                    {
+                        Product aux = new Product();
+                        aux = products[i];
+                        products[i] = products[i + 1];
+                        products[i + 1] = aux;
+                        flag = false;
+                    }
+                }
+            } while (flag == false);
+        }
+        
+        public void sortareDescrescatorPret()
+        {
+            bool flag = false;
+
+            do
+            {
+                flag = true;
+                for (int i = 0; i < products.Count - 1; i++)
+                {
+                    if (products[i].Price < products[i + 1].Price)
+                    {
+                        Product aux = new Product();
+                        aux = products[i];
+                        products[i] = products[i + 1];
+                        products[i + 1] = aux;
+                        flag = false;
+                    }
+                }
+            } while (flag == false);
+        }
     }
 }

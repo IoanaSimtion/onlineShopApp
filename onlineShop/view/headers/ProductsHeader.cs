@@ -40,7 +40,7 @@ namespace onlineShop.view.headers
             cart.ForeColor = Color.White;
             cart.Font = new Font("Century Gothic", 10, FontStyle.Bold);
 
-            panel.Controls.Add(new HeaderProduse(this));
+            panel.Controls.Add(new HeaderProduse(this, mainPage));
             base.Controls.Add(cart);
             base.Controls.Add(cartIcon);
 

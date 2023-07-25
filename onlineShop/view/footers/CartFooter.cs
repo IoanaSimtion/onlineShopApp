@@ -1,4 +1,5 @@
-﻿using System;
+﻿using onlineShop.product.service;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,7 @@ namespace onlineShop.view.footers
 {
     internal class CartFooter : Panel
     {
+        private ProductService productService;
         private Button checkout;
         private Button continueShopping;
         MainPage form;
@@ -45,11 +47,14 @@ namespace onlineShop.view.footers
 
         private void continueShopping_Click(object sender, EventArgs e)
         {
+
+            productService = new ProductService();
+
             form.removeControl("pnlCart");
 
             this.PerformLayout();
 
-            form.setProductsPage();
+            form.setProductsPage(productService);
 
         }
 
