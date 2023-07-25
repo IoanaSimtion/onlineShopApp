@@ -13,11 +13,11 @@ namespace onlineShop.view.containers
     internal class PnlProductsContainer : PnlContainer
     {
         private ProductService productService;
-        public PnlProductsContainer(Panel panel, MainPage form) : base(panel)
+        public PnlProductsContainer(Panel panel, MainPage form, ProductService produse) : base(panel)
         {
             this.Name = Constants.PRODUCTS_CONTAINER;
 
-            this.productService = new ProductService();
+            this.productService = produse;
             PopulateContainer(this, form);
             panel.Controls.Add(this);
 
@@ -27,6 +27,7 @@ namespace onlineShop.view.containers
         {
 
             List<Product> products = productService.Products;
+                       
 
             int x = 0, y = 80, k = 1;
 

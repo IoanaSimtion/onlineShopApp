@@ -23,11 +23,13 @@ namespace onlineShop.view
     {        
         
         public CartActions cartActions;
-
+        public ProductService productService;
 
         public MainPage()
         {
             InitializeComponent();
+
+            productService = new ProductService();
             
             this.cartActions = new CartActions();
 
@@ -35,7 +37,7 @@ namespace onlineShop.view
 
             //setHomePage();
 
-            setProductsPage();
+            setProductsPage(productService);
 
             //setCartPage()      
         }
@@ -51,9 +53,9 @@ namespace onlineShop.view
             Home home = new Home(this);
         }
 
-        public void setProductsPage()
+        public void setProductsPage(ProductService productService)
         {
-            ProductsPage productsPage = new ProductsPage(this);
+            ProductsPage productsPage = new ProductsPage(this,productService);
         }
 
         public void setCartPage()
