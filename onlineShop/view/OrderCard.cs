@@ -57,6 +57,8 @@ namespace onlineShop.view
             cantitate.Items.Add("9");
             cantitate.Items.Add("10");
 
+            cantitate.SelectedIndexChanged += cantitate_SelectedIndexChanged;
+
 
             pnlHeader = new Panel();
             pnlHeader.Dock = DockStyle.Top;
@@ -110,9 +112,11 @@ namespace onlineShop.view
 
         private void cantitate_SelectedIndexChanged(object sender, EventArgs e)
         {
+
             cantitateProd = int.Parse(cantitate.SelectedItem.ToString());
 
             mainPage.cartActions.updateItem(id, cantitateProd);
+
         }
 
 
