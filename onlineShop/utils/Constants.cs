@@ -21,6 +21,7 @@ namespace onlineShop.utils
         public static readonly string HOME_PANEL = "pnlHome";
         public static readonly string PRODUCTS_PANEL = "pnlProducts";
         public static readonly string CART_PANEL = "pnlCart";
+        public static readonly string MENU_PANEL = "pnlMenu";
 
 
     }

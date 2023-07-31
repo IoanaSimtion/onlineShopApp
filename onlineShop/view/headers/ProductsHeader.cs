@@ -1,5 +1,7 @@
-﻿using onlineShop.utils;
+﻿using onlineShop.product.service;
+using onlineShop.utils;
 using onlineShop.view.cartPage;
+using onlineShop.view.menuPanel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,18 +15,22 @@ namespace onlineShop.view.headers
     {
         private PictureBox cartIcon;
         private Label cart;
+        private Label menu;
         MainPage form;
         Panel pnl;
-        public ProductsHeader(Panel panel, MainPage mainPage) : base(panel)
+        private ProductService produse;
+        public ProductsHeader(Panel panel, MainPage mainPage, ProductService products) : base(panel)
         {
             this.form = mainPage;
             this.pnl = panel;
+            this.produse = products;
 
             this.Name = Constants.PRODUCTS_HEADER;
             base.Height = 94 + 53;           
 
             cartIcon = new PictureBox();
             cart = new Label();
+            menu = new Label();
 
             cartIcon.Image = Image.FromFile("D:\\mycode\\icons\\cart.png");
             cartIcon.Location = new Point(1855, 20);
@@ -40,8 +46,17 @@ namespace onlineShop.view.headers
             cart.ForeColor = Color.White;
             cart.Font = new Font("Century Gothic", 10, FontStyle.Bold);
 
-            panel.Controls.Add(new HeaderProduse(this, mainPage));
+            menu.Text = "Menu";
+            menu.Location = new Point(30, 65);
+            menu.Size = new Size(100, 100);
+            menu.ForeColor = Color.White;
+            menu.Font = new Font("Century Gothic", 10, FontStyle.Bold);
+
+            menu.Click += menu_Click;
+
+            panel.Controls.Add(new HeaderProduse(this, panel, mainPage,produse));
             base.Controls.Add(cart);
+            base.Controls.Add(menu);
             base.Controls.Add(cartIcon);
 
         }
@@ -53,6 +68,11 @@ namespace onlineShop.view.headers
 
             form.setCartPage();                        
 
+        }
+
+        private void menu_Click(object sender, EventArgs e)
+        {
+            Menu meniu = new Menu(form,pnl);
         }
     }
 }
