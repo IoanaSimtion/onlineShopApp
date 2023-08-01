@@ -12,12 +12,7 @@ namespace onlineShop.view.mappers
     {
         public static Card productToCardMapper(Panel panel ,Product product, int x, int y, MainPage main)
         {
-            return new Card(product.Marimi, product.Id, product.Name, product.Price, product.Description, product.Image, product.Stock, x, y, panel, main);
+            return new Card(product.Marimi, product.Culori, product.Id, product.Name, product.Price, product.Description, product.Image, product.Stock, x, y, panel, main);
         }
-
-        //public static CardForCart cartProductMapper(Panel panel, )
-        //{
-
-        //}
     }
 }

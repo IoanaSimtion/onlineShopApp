@@ -25,6 +25,7 @@ namespace onlineShop.view.filterPanel
         private bool pretMinimSchimbat;
         private bool pretMaximSchimbat;
         private List<string> sizes;
+        private List<string> colors;
 
         public Filter(Panel panel, MainPage main)
         {
@@ -36,6 +37,7 @@ namespace onlineShop.view.filterPanel
             this.Location = new Point(1500,200);
 
             sizes = new List<string>();
+            colors = new List<string>();
 
             filtruCuloare();
             filtruPret();
@@ -74,6 +76,8 @@ namespace onlineShop.view.filterPanel
             culori.Items.Add("Violet");
             culori.Items.Add("Alb");
             culori.Items.Add("Negru");
+
+            culori.ItemCheck += culori_ItemCheck;
 
             culori.Height = 100;
             culori.Location = new Point(10, 280);
@@ -156,6 +160,10 @@ namespace onlineShop.view.filterPanel
         {
             sizes.Add(marimi.GetItemText(marimi.SelectedItem).ToString());
         }
+        private void culori_ItemCheck(object sender, EventArgs e)
+        {
+            colors.Add(culori.GetItemText(culori.SelectedItem).ToString());
+        }
         private void save_Click(object sender, EventArgs e)
         {
             produse = new ProductService();
@@ -170,6 +178,10 @@ namespace onlineShop.view.filterPanel
                 produse.filtrareMarime(sizes[i]);
             }
 
+            for(int i = 0; i < colors.Count(); i++)
+            {
+                produse.filtrareCuloare(colors[i]);
+            }
 
             form.removeControl("pnlProducts");
 

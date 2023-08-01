@@ -16,6 +16,7 @@ namespace onlineShop.product.models
         private string image;
         private int stock;
         private List<string> marimi;
+        private List<string> culori;
 
         public Product()
         {
@@ -35,6 +36,7 @@ namespace onlineShop.product.models
         public Product(string properties)
         {
             marimi = new List<string>();
+            culori = new List<string>();
 
             string[] propr = properties.Split(",");
 
@@ -46,13 +48,28 @@ namespace onlineShop.product.models
             this.stock = Int32.Parse(propr[5]);
             for(int i = 6; i < propr.Length; i++)
             {
-                this.marimi.Add(propr[i]);
+                if (propr[i].Length > 1)
+                {
+                    if (propr[i].Contains('X'))
+                    {
+                        this.marimi.Add(propr[i]);
+                    }
+                    else
+                    {
+                        this.culori.Add(propr[i]);
+                    }                   
+                }                
             }
         }
 
         public List<string> Marimi
         {
             get { return marimi; }
+        }
+        
+        public List<string> Culori
+        {
+            get { return culori; }
         }
         public string Id
         {

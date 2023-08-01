@@ -21,7 +21,7 @@ namespace onlineShop.view
 
         private MainPage mainPage;
 
-        public Card(List<string> marimi, string id, string name, float price, string description, string image, int stock, int x, int y, Panel parent,MainPage mainPage)
+        public Card(List<string> marimi, List<string> culori, string id, string name, float price, string description, string image, int stock, int x, int y, Panel parent,MainPage mainPage)
         {
             this.Parent = parent;
             this.Location = new Point(x, y);

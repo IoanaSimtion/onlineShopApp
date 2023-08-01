@@ -173,5 +173,16 @@ namespace onlineShop.product.service
                 }
             }
         }
+        public void filtrareCuloare(string culoare)
+        {
+            for(int i = 0; i < products.Count; i++)
+            {
+                if (products[i].Culori.Contains(culoare)==false)
+                {                    
+                    products.Remove(products[i]);
+                    i--;
+                }
+            }
+        }
     }
 }
