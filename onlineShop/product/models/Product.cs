@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +15,7 @@ namespace onlineShop.product.models
         private string description;
         private string image;
         private int stock;
+        private List<string> marimi;
 
         public Product()
         {
@@ -32,6 +34,8 @@ namespace onlineShop.product.models
 
         public Product(string properties)
         {
+            marimi = new List<string>();
+
             string[] propr = properties.Split(",");
 
             this.id = propr[0];
@@ -40,8 +44,16 @@ namespace onlineShop.product.models
             this.description = propr[3];
             this.image = propr[4];
             this.stock = Int32.Parse(propr[5]);
+            for(int i = 6; i < propr.Length; i++)
+            {
+                this.marimi.Add(propr[i]);
+            }
         }
 
+        public List<string> Marimi
+        {
+            get { return marimi; }
+        }
         public string Id
         {
             get { return id; }

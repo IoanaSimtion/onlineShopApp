@@ -160,6 +160,18 @@ namespace onlineShop.product.service
                     i--;
                 }
             }
+        } 
+        
+        public void filtrareMarime(string marime)
+        {
+            for(int i = 0; i < products.Count; i++)
+            {
+                if (products[i].Marimi.Contains(marime)==false)
+                {                    
+                    products.Remove(products[i]);
+                    i--;
+                }
+            }
         }
     }
 }

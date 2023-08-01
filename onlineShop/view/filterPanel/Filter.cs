@@ -24,6 +24,7 @@ namespace onlineShop.view.filterPanel
         private string pretMax;
         private bool pretMinimSchimbat;
         private bool pretMaximSchimbat;
+        private List<string> sizes;
 
         public Filter(Panel panel, MainPage main)
         {
@@ -33,6 +34,8 @@ namespace onlineShop.view.filterPanel
             this.BackColor = Color.LightBlue;
             this.Size = new Size(400, 500);
             this.Location = new Point(1500,200);
+
+            sizes = new List<string>();
 
             filtruCuloare();
             filtruPret();
@@ -129,6 +132,8 @@ namespace onlineShop.view.filterPanel
             marimi.Items.Add("XL");
             marimi.Items.Add("XXL");
 
+            marimi.ItemCheck += marimi_ItemCheck;
+
             marimi.Location = new Point(10, 130);
 
             this.Controls.Add(marime);
@@ -147,15 +152,22 @@ namespace onlineShop.view.filterPanel
             this.pretMax = pret2.Text;
             this.pretMaximSchimbat = true;
         }
-
+        private void marimi_ItemCheck(object sender, EventArgs e)
+        {
+            sizes.Add(marimi.GetItemText(marimi.SelectedItem).ToString());
+        }
         private void save_Click(object sender, EventArgs e)
         {
-
             produse = new ProductService();
 
             if (pretMinimSchimbat == true && pretMaximSchimbat == true)
             {
                 produse.filtrarePret(Int32.Parse(pretMin),Int32.Parse(pretMax));
+            }
+
+            for(int i = 0; i < sizes.Count(); i++)
+            {
+                produse.filtrareMarime(sizes[i]);
             }
 
 
