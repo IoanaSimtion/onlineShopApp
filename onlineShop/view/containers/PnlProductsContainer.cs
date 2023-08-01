@@ -13,6 +13,7 @@ namespace onlineShop.view.containers
     internal class PnlProductsContainer : PnlContainer
     {
         private ProductService productService;
+        private Label noProducts;
         public PnlProductsContainer(Panel panel, MainPage form, ProductService produse) : base(panel)
         {
             this.Name = Constants.PRODUCTS_CONTAINER;
@@ -30,6 +31,18 @@ namespace onlineShop.view.containers
                        
 
             int x = 0, y = 80, k = 1;
+
+            if (products.Count() == 0)
+            {
+                noProducts = new Label();
+
+                noProducts.Text = "No products";
+                noProducts.Font = new Font("Century Gothic", 18, FontStyle.Regular);
+                noProducts.Location = new Point(850, 350);
+                noProducts.Size = new Size(300, 300);
+                this.Controls.Add(noProducts);
+
+            }
 
             for (int i = 0; i < products.Count(); i++)
             {

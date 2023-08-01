@@ -1,4 +1,5 @@
 ﻿using onlineShop.product.service;
+using onlineShop.view.filterPanel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,40 +10,68 @@ namespace onlineShop.view.headers
 {
     internal class HeaderProduse : Header
     {
-        private ComboBox filtru;
+        private Panel pnl;
+        private Panel containerPanel;
+        private ComboBox sort;
         private ProductService produse;
         private MainPage form;
-        public HeaderProduse(Panel panel, MainPage mainPage) : base(panel)
+        private Label filtru;
+        private PictureBox filtruIcon;
+        public HeaderProduse(Panel panel, Panel container, MainPage mainPage, ProductService products) : base(panel)
         {
             base.ResetText();
             base.Label = "Produse";
             base.Name = "pnlHeaderProduse";
             this.form = mainPage;
+            this.pnl = panel;
+            this.containerPanel = container;
+            this.produse = products;
             //base.Dock = DockStyle.Bottom;
-            setFilter();
+            sortProducts();
+            filterProducts();
         }
 
-        public void setFilter()
+        public void filterProducts()
         {
-            filtru = new ComboBox();
-            filtru.Items.Add("Name (A to Z)");
-            filtru.Items.Add("Name (Z to A)");
-            filtru.Items.Add("Price (low to high)");
-            filtru.Items.Add("Price (high to low)");
-            filtru.Parent = this;
-            filtru.Location = new Point(1725, 10);
-            filtru.Width = 175;
-            filtru.Text = "Filter";
-            filtru.Font = new Font("Century Gothic", 10, FontStyle.Regular);
+            filtru = new Label();
+            filtru.Text = "filtru";
+            filtru.Size = new Size(100, 100);
+            filtru.ForeColor = Color.Blue;
+            filtru.Location = new Point(1680, 10);
+            filtru.Font = new Font("Century Gothic", 10, FontStyle.Bold);
 
-            filtru.SelectedIndexChanged+=filtru_SelectedIndexChanged;
+            filtruIcon = new PictureBox();
+            filtruIcon.Image = Image.FromFile("D:\\mycode\\icons\\Filter.png");
+            filtruIcon.Location = new Point(1680, 10);
+            filtruIcon.SizeMode = PictureBoxSizeMode.Zoom;
+            filtruIcon.Size = new Size(30, 30);
+            filtruIcon.BackColor = Color.FromArgb(74, 85, 162);
 
-            this.Controls.Add(filtru);
+            filtruIcon.Click += filtru_Click;
+
+            this.Controls.Add(filtruIcon);
+        }
+        public void sortProducts()
+        {
+            sort = new ComboBox();
+            sort.Items.Add("Name (A to Z)");
+            sort.Items.Add("Name (Z to A)");
+            sort.Items.Add("Price (low to high)");
+            sort.Items.Add("Price (high to low)");
+            sort.Parent = this;
+            sort.Location = new Point(1725, 10);
+            sort.Width = 175;
+            sort.Text = "Sort products";
+            sort.Font = new Font("Century Gothic", 10, FontStyle.Regular);
+
+            sort.SelectedIndexChanged+=sort_SelectedIndexChanged;
+
+            this.Controls.Add(sort);
         }
 
-        private void filtru_SelectedIndexChanged(object sender, EventArgs e)
+        private void sort_SelectedIndexChanged(object sender, EventArgs e)
         {
-            switch (filtru.SelectedIndex)
+            switch (sort.SelectedIndex)
             {
                 case 0: sortareCrescNume(); break;
                 case 1: sortareDescrescNume(); break;
@@ -53,7 +82,6 @@ namespace onlineShop.view.headers
 
         void sortareCrescNume()
         {
-            produse = new ProductService();
 
             produse.sortareCrescatorNume();
 
@@ -67,7 +95,6 @@ namespace onlineShop.view.headers
         }
         void sortareDescrescNume()
         {
-            produse = new ProductService();
 
             produse.sortareDescrescatorNume();
 
@@ -80,7 +107,6 @@ namespace onlineShop.view.headers
 
         void sortareCrescPret()
         {
-            produse = new ProductService();
 
             produse.sortareCrescatorPret();
 
@@ -93,7 +119,6 @@ namespace onlineShop.view.headers
         
         void sortareDescrescPret()
         {
-            produse = new ProductService();
 
             produse.sortareDescrescatorPret();
 
@@ -102,6 +127,11 @@ namespace onlineShop.view.headers
             this.PerformLayout();
 
             form.setProductsPage(produse);
+        }
+
+        private void filtru_Click(object sender, EventArgs e)
+        {
+            Filter filtru = new Filter(containerPanel,form);
         }
     }
 }

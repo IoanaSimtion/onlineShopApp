@@ -149,5 +149,40 @@ namespace onlineShop.product.service
                 }
             } while (flag == false);
         }
+
+        public void filtrarePret(int minim, int maxim)
+        {
+            for(int i = 0; i < products.Count; i++)
+            {
+                if (products[i].Price<minim || products[i].Price > maxim)
+                {                    
+                    products.Remove(products[i]);
+                    i--;
+                }
+            }
+        } 
+        
+        public void filtrareMarime(string marime)
+        {
+            for(int i = 0; i < products.Count; i++)
+            {
+                if (products[i].Marimi.Contains(marime)==false)
+                {                    
+                    products.Remove(products[i]);
+                    i--;
+                }
+            }
+        }
+        public void filtrareCuloare(string culoare)
+        {
+            for(int i = 0; i < products.Count; i++)
+            {
+                if (products[i].Culori.Contains(culoare)==false)
+                {                    
+                    products.Remove(products[i]);
+                    i--;
+                }
+            }
+        }
     }
 }
