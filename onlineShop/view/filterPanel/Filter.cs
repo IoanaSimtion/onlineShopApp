@@ -33,8 +33,8 @@ namespace onlineShop.view.filterPanel
             this.Parent = panel;
             this.form = main;
             this.BackColor = Color.LightBlue;
-            this.Size = new Size(400, 500);
-            this.Location = new Point(1500,200);
+            this.Size = new Size(400, 470);
+            this.Location = new Point(1500,149);
 
             sizes = new List<string>();
             colors = new List<string>();
@@ -54,10 +54,11 @@ namespace onlineShop.view.filterPanel
         {
             save = new Button();
 
-            save.Location = new Point(300, 400);
-            save.Size = new Size(50,50);
+            save.Location = new Point(270, 390);
+            save.Size = new Size(100,50);
             save.Text = "Save";
-
+            save.Font = new Font("Century Gothic", 9, FontStyle.Regular);
+            save.BackColor = Color.White;
             save.Click += save_Click;
 
             this.Controls.Add(save);

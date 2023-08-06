@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace onlineShop.order.models
+namespace onlineShop.orderDetails.models
 {
     public class OrderDetails
     {
@@ -12,11 +12,6 @@ namespace onlineShop.order.models
         private string productId;
         private int price;
         private int quantity;
-
-        public OrderDetails()
-        {
-
-        }
 
         public OrderDetails(string productId, string orderId, int quantity, int price)
         {

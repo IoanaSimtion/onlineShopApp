@@ -28,6 +28,8 @@ namespace onlineShop.view.footers
             checkout.ForeColor = Color.FromArgb(74, 85, 162);
             checkout.BackColor = Color.White;
 
+            checkout.Click += checkout_Click;
+
             continueShopping.Text = "Continue shopping";
             continueShopping.Location = new Point(50, 40);
             continueShopping.Size = new Size(300, 60);
@@ -55,6 +57,13 @@ namespace onlineShop.view.footers
             this.PerformLayout();
 
             form.setProductsPage(productService);
+
+        }
+        
+        private void checkout_Click(object sender, EventArgs e)
+        {
+
+           
 
         }
 
