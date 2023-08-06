@@ -1,7 +1,11 @@
-﻿using onlineShop.product.models;
+﻿using onlineShop.order.service;
+using onlineShop.orderDetails.service;
+using onlineShop.product.models;
 using onlineShop.product.service;
 using onlineShop.system.cart;
+using onlineShop.user.models;
 using onlineShop.view.cartPage;
+using onlineShop.view.checkoutPage;
 using onlineShop.view.containers;
 using onlineShop.view.headers;
 using onlineShop.view.home;
@@ -25,11 +29,23 @@ namespace onlineShop.view
         public CartActions cartActions;
         public ProductService productService;
 
+        public User user;
+
+        public OrderDetailsService orderDetailsService;
+        public OrderService orderService;
+        
+
+
         public MainPage()
         {
             InitializeComponent();
 
+            user = new User("client, noe902wef, marcus@gmail.com, PArolAmarCUS, Marcus Stoica, Romania Bucuresti Sectorul 2 Str Livezii Nr 11, True, 12 / 05 / 2023, False");
+
             productService = new ProductService();
+
+            orderService = new OrderService();
+            orderDetailsService=new OrderDetailsService();
             
             this.cartActions = new CartActions();
 
@@ -37,9 +53,11 @@ namespace onlineShop.view
 
             //setHomePage();
 
-            setProductsPage(productService);
+            setProductsPage(productService,orderService,orderDetailsService);
 
-            //setCartPage()      
+            //setCartPage();   
+
+            //setCheckoutPage();
         }
 
         public void MainPage_Load(object sender, EventArgs e)
@@ -47,20 +65,26 @@ namespace onlineShop.view
 
         }
 
+        public void setCheckoutPage(OrderService orders, OrderDetailsService orderDetails, ProductService products)
+        {
+            CheckoutPage checkout = new CheckoutPage(this,orders,orderDetails,products);
+
+            this.Controls.Add(checkout);
+        }
 
         public void setHomePage()
         {
             Home home = new Home(this);
         }
 
-        public void setProductsPage(ProductService productService)
+        public void setProductsPage(ProductService productService, OrderService orders, OrderDetailsService orderDetails)
         {
-            ProductsPage productsPage = new ProductsPage(this,productService);
+            ProductsPage productsPage = new ProductsPage(this,productService,orders,orderDetails);
         }
 
-        public void setCartPage()
+        public void setCartPage(OrderService orders, OrderDetailsService orderDetails, ProductService products)
         {
-            Cart cart = new Cart(this);
+            Cart cart = new Cart(this,orders,orderDetails,products);
 
             this.Controls.Add(cart);
         }

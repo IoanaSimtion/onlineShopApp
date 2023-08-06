@@ -1,4 +1,7 @@
-﻿using onlineShop.system.cart;
+﻿using onlineShop.order.service;
+using onlineShop.orderDetails.service;
+using onlineShop.product.service;
+using onlineShop.system.cart;
 using onlineShop.view.cartPage;
 using onlineShop.view.containers;
 using System;
@@ -22,8 +25,14 @@ namespace onlineShop.view
         private MainPage mainPage;
         private string id;
         private int cantitateProd;
-        public OrderCard(MainPage form, Panel parent, string id, string name, float price, string description, int amount, int x, int y)
+        private OrderDetailsService orderDetailsService;
+        private OrderService orderService;
+        private ProductService productService;
+        public OrderCard(MainPage form, Panel parent, string id, string name, float price, string description, int amount, int x, int y, OrderService orders, OrderDetailsService orderDetails, ProductService products)
         {
+            this.orderDetailsService = orderDetails;
+            this.orderService = orders;
+            this.productService = products;
             this.mainPage = form;
             this.Parent = parent;
             this.Location = new Point(x, y);
@@ -128,7 +137,7 @@ namespace onlineShop.view
 
             this.PerformLayout();
 
-            mainPage.setCartPage();
+            mainPage.setCartPage(orderService,orderDetailsService,productService);
         }
     }
 }

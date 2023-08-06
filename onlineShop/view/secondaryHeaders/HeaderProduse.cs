@@ -1,4 +1,6 @@
-﻿using onlineShop.product.service;
+﻿using onlineShop.order.service;
+using onlineShop.orderDetails.service;
+using onlineShop.product.service;
 using onlineShop.view.filterPanel;
 using System;
 using System.Collections.Generic;
@@ -6,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace onlineShop.view.headers
+namespace onlineShop.view.secondaryHeaders
 {
     internal class HeaderProduse : Header
     {
@@ -17,7 +19,9 @@ namespace onlineShop.view.headers
         private MainPage form;
         private Label filtru;
         private PictureBox filtruIcon;
-        public HeaderProduse(Panel panel, Panel container, MainPage mainPage, ProductService products) : base(panel)
+        private OrderService orderService;
+        private OrderDetailsService orderDetailsService;
+        public HeaderProduse(Panel panel, Panel container, MainPage mainPage, ProductService products, OrderService orders, OrderDetailsService orderDetails) : base(panel)
         {
             base.ResetText();
             base.Label = "Produse";
@@ -26,6 +30,8 @@ namespace onlineShop.view.headers
             this.pnl = panel;
             this.containerPanel = container;
             this.produse = products;
+            this.orderService= orders;
+            this.orderDetailsService = orderDetails;
             //base.Dock = DockStyle.Bottom;
             sortProducts();
             filterProducts();
@@ -89,7 +95,7 @@ namespace onlineShop.view.headers
 
             this.PerformLayout();
 
-            form.setProductsPage(produse);
+            form.setProductsPage(produse,orderService,orderDetailsService);
 
 
         }
@@ -102,7 +108,7 @@ namespace onlineShop.view.headers
 
             this.PerformLayout();
 
-            form.setProductsPage(produse);
+            form.setProductsPage(produse,orderService,orderDetailsService);
         }
 
         void sortareCrescPret()
@@ -114,7 +120,7 @@ namespace onlineShop.view.headers
 
             this.PerformLayout();
 
-            form.setProductsPage(produse);
+            form.setProductsPage(produse,orderService,orderDetailsService);
         }
         
         void sortareDescrescPret()
@@ -126,12 +132,12 @@ namespace onlineShop.view.headers
 
             this.PerformLayout();
 
-            form.setProductsPage(produse);
+            form.setProductsPage(produse,orderService,orderDetailsService);
         }
 
         private void filtru_Click(object sender, EventArgs e)
         {
-            Filter filtru = new Filter(containerPanel,form);
+            Filter filtru = new Filter(containerPanel,form,orderService,orderDetailsService);
         }
     }
 }
