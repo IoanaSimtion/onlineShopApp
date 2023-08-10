@@ -16,7 +16,6 @@ namespace onlineShop.orderDetails.service
         {
             orderDetails = new List<OrderDetails>();
 
-
         }
 
         public void afisare()

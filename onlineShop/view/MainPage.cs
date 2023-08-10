@@ -4,11 +4,13 @@ using onlineShop.product.models;
 using onlineShop.product.service;
 using onlineShop.system.cart;
 using onlineShop.user.models;
+using onlineShop.user.service;
 using onlineShop.view.cartPage;
 using onlineShop.view.checkoutPage;
 using onlineShop.view.containers;
 using onlineShop.view.headers;
 using onlineShop.view.home;
+using onlineShop.view.loginPage;
 using onlineShop.view.mappers;
 using onlineShop.view.productsPage;
 using System;
@@ -30,6 +32,7 @@ namespace onlineShop.view
         public ProductService productService;
 
         public User user;
+        public UserService userService;
 
         public OrderDetailsService orderDetailsService;
         public OrderService orderService;
@@ -44,6 +47,8 @@ namespace onlineShop.view
 
             productService = new ProductService();
 
+            userService = new UserService();
+
             orderService = new OrderService();
             orderDetailsService=new OrderDetailsService();
             
@@ -51,9 +56,11 @@ namespace onlineShop.view
 
             this.WindowState = FormWindowState.Maximized;
 
+            setLoginPage(productService, orderService, orderDetailsService);
+
             //setHomePage();
 
-            setProductsPage(productService,orderService,orderDetailsService);
+            //setProductsPage(productService,orderService,orderDetailsService);
 
             //setCartPage();   
 
@@ -63,6 +70,12 @@ namespace onlineShop.view
         public void MainPage_Load(object sender, EventArgs e)
         {
 
+        }
+
+        public void setLoginPage(ProductService productService, OrderService orders, OrderDetailsService orderDetails)
+        {
+
+            LoginPage loginPage = new LoginPage(this, productService, orders, orderDetails, userService);
         }
 
         public void setCheckoutPage(OrderService orders, OrderDetailsService orderDetails, ProductService products)

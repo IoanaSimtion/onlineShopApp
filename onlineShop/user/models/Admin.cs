@@ -13,7 +13,7 @@ namespace onlineShop.user.models
         private bool readProducts;
         private bool editProducts;
 
-        public Admin(bool readClients, bool editClients, bool readProducts, bool editProducts, string type, string id, string email, string password, string fullName, string address) : base("admin", id, email, password, fullName, address)
+        public Admin(bool readClients, bool editClients, bool readProducts, bool editProducts, string type, string id, string email, string password, string fullName, string address, string username) : base("admin", id, email, password, fullName, address,username)
         {
             this.readClients = readClients;
             this.editClients = editClients;
@@ -25,10 +25,10 @@ namespace onlineShop.user.models
         {
             string[] propr = properties.Split(",");
 
-            this.readClients = Boolean.Parse(propr[6]);
-            this.editClients = Boolean.Parse(propr[7]);
-            this.readProducts = Boolean.Parse(propr[8]);
-            this.editProducts = Boolean.Parse(propr[9]);
+            this.readClients = Boolean.Parse(propr[7]);
+            this.editClients = Boolean.Parse(propr[8]);
+            this.readProducts = Boolean.Parse(propr[9]);
+            this.editProducts = Boolean.Parse(propr[10]);
         }
 
         public bool ReadClients

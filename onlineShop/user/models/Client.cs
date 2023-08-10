@@ -17,15 +17,15 @@ namespace onlineShop.user.models
         {
             string[] propr = properties.Split(",");
 
-            this.abonament = Boolean.Parse(propr[6]);
-            string dateString = propr[7];
+            this.abonament = Boolean.Parse(propr[7]);
+            string dateString = propr[8];
             string format = "dd/MM/yyyy";
             this.ultimaComanda = DateTime.ParseExact(dateString, format, CultureInfo.InvariantCulture);
-            this.blocked = Boolean.Parse(propr[8]);
+            this.blocked = Boolean.Parse(propr[9]);
 
         }
 
-        public Client(bool abonament, DateTime ultimaComanda, bool blocked, string type, string id, string email, string password, string fullName, string address) : base(type, id, email, password, fullName, address)
+        public Client(bool abonament, DateTime ultimaComanda, bool blocked, string type, string id, string email, string password, string fullName, string address, string username) : base(type, id, email, password, fullName, address, username)
         {
             this.abonament = abonament;
             this.ultimaComanda = ultimaComanda;

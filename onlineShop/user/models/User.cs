@@ -14,9 +14,10 @@ namespace onlineShop.user.models
         private string fullName;
         private string address;
         private string type;
+        private string username;
 
 
-        public User(string type, string id, string email, string password, string fullName, string address)
+        public User(string type, string id, string email, string password, string fullName, string address, string username)
         {
             this.type = type;
             this.id = id;
@@ -24,6 +25,7 @@ namespace onlineShop.user.models
             this.address = address;
             this.password = password;
             this.fullName = fullName;
+            this.username = username;
         }
 
         public User(string properties)
@@ -36,6 +38,7 @@ namespace onlineShop.user.models
             this.password = propr[3];
             this.fullName = propr[4];
             this.address = propr[5];
+            this.username = propr[6];
 
 
         }
@@ -73,6 +76,12 @@ namespace onlineShop.user.models
         {
             get { return this.address; }
             set { this.address = value; }
+        }
+        
+        public string Username
+        {
+            get { return this.username; }
+            set { this.username = value; }
         }
 
         public override string ToString()

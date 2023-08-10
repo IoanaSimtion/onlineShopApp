@@ -1,33 +1,60 @@
-﻿using System;
+﻿using onlineShop.order.service;
+using onlineShop.orderDetails.service;
+using onlineShop.product.service;
+using onlineShop.user.models;
+using onlineShop.user.service;
+using onlineShop.utils;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 
-namespace onlineShop.view
+namespace onlineShop.view.loginPage
 {
-    public partial class LoginPage : Form
+    internal class LoginPage : Panel
     {
-        Panel pnlContainer = new Panel();
-        Panel pnlLoginData = new Panel();
-        PictureBox login = new PictureBox();
-        public LoginPage()
+        private UserService users;
+        private Panel pnlLoginData = new Panel();
+        private PictureBox login = new PictureBox();
+        private MainPage form;
+        private ProductService produse;
+        private OrderService orderService;
+        private OrderDetailsService orderDetailsService;
+        private TextBox password;
+        private TextBox username;
+
+        public LoginPage(MainPage mainPage, ProductService productService, OrderService orders, OrderDetailsService orderDetails, UserService userService)
         {
-            InitializeComponent();
+            this.Name = Constants.LOGIN_PANEL;
+
+            this.users = userService;
+
             setMainContainer();
+            setLoginContainer();
 
-            this.WindowState = FormWindowState.Maximized;
+            this.form = mainPage;
+            this.produse = productService;
+            this.orderService = orders;
+            this.orderDetailsService=orderDetails;
+
+            mainPage.Controls.Add(this);
         }
 
-        private void LoginPage_Load(object sender, EventArgs e)
+
+        public bool verifyUser(string username, string password)
         {
+            for(int i=0; i < users.Users.Count(); i++)
+            {
+                if (users.Users[i].Username.Equals(username) == true && users.Users[i].Password.Equals(password) == true)
+                {
+                    return true;
+                }
+            }
 
+            return false;
         }
-
+         
         public bool validateLogin(TextBox username, TextBox password)
         {
             string text = "";
@@ -50,16 +77,6 @@ namespace onlineShop.view
             return true;
         }
 
-        public void loginEvent(object sender, EventArgs e)
-        {
-            //login.Click += new EventHandler()
-        }
-
-        private void Login_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void setLoginContainer()
         {
             PictureBox usernameIcon = new PictureBox();
@@ -75,7 +92,7 @@ namespace onlineShop.view
             passwordIcon.Location = new Point(0, 150);
             passwordIcon.Size = new Size(52, 47);
 
-            TextBox username = new TextBox();
+            username = new TextBox();
             Panel pnlLine1 = new Panel();
 
             username.PlaceholderText = " Username";
@@ -89,7 +106,7 @@ namespace onlineShop.view
             pnlLine1.BackColor = Color.PaleTurquoise;
 
 
-            TextBox password = new TextBox();
+            password = new TextBox();
             Panel pnlLine2 = new Panel();
 
             password.PlaceholderText = " Password";
@@ -120,9 +137,8 @@ namespace onlineShop.view
             pnlLoginData.Controls.Add(pnlLine2);
             pnlLoginData.Controls.Add(remember);
 
-            pnlContainer.Controls.Add(pnlLoginData);
+            this.Controls.Add(pnlLoginData);
 
-            base.ActiveControl = null;
 
         }
 
@@ -131,11 +147,12 @@ namespace onlineShop.view
             Label titlu = new Label();
             Label forgotPassword = new Label();
 
-
             login.Image = Image.FromFile("D:\\mycode\\icons\\login.png");
             login.SizeMode = PictureBoxSizeMode.Zoom;
             login.Location = new Point(900, 700);
             login.Size = new Size(200, 200);
+
+            login.Click += login_Click;
 
             titlu.Text = "Online Shop";
             titlu.Size = new Size(300, 100);
@@ -146,16 +163,36 @@ namespace onlineShop.view
             forgotPassword.Text = "Forgot password";
             forgotPassword.Location = new Point(950, 900);
 
-            pnlContainer.BackColor = Color.FromArgb(197, 223, 248);
-            pnlContainer.Dock = DockStyle.Fill;
+            this.BackColor = Color.FromArgb(197, 223, 248);
+            this.Dock = DockStyle.Fill;
 
             setLoginContainer();
 
-            pnlContainer.Controls.Add(titlu);
-            pnlContainer.Controls.Add(login);
-
-            this.Controls.Add(pnlContainer);
+            this.Controls.Add(titlu);
+            this.Controls.Add(login);
+            
 
         }
+
+        private void login_Click(object sender, EventArgs e)
+        {
+
+            if (validateLogin(username, password) == true)
+            {
+                if (verifyUser(username.Text, password.Text) == true)
+                {
+                    form.removeControl("pnlLogin");
+
+                    this.PerformLayout();
+
+                    form.setProductsPage(produse, orderService, orderDetailsService);
+                }
+                else
+                {
+                    MessageBox.Show("Incorrect username or password", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
     }
 }

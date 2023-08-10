@@ -92,5 +92,7 @@ namespace onlineShop.user.service
             //Debug.WriteLine(data);
 
         }
+
+        public List<User> Users { get { return users; } }
     }
 }
