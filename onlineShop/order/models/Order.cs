@@ -38,5 +38,12 @@ namespace onlineShop.order.models
             get { return customerId; }
             set { customerId = value; }
         }
+
+        public string returnSave()
+        {
+            string save = this.id + "," + this.customerId;
+
+            return save;
+        }
     }
 }

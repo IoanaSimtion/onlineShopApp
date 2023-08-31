@@ -13,7 +13,7 @@ namespace onlineShop.view.secondaryHeaders
         {
             text = new Label();
             text.Text = "Text";
-            text.Width = 200;
+            text.Width = 300;
             text.Location = new Point(10, 15);
             text.Font = new Font("Century Gothic", 12, FontStyle.Bold);
             text.ForeColor = Color.FromArgb(74, 85, 162);

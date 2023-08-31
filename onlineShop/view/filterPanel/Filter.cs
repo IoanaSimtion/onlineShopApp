@@ -194,7 +194,7 @@ namespace onlineShop.view.filterPanel
 
             this.PerformLayout();
 
-            form.setProductsPage(produse,orderService,orderDetailsService);
+            form.setProductsPage();
         }
     }
 }

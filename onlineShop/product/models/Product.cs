@@ -11,7 +11,7 @@ namespace onlineShop.product.models
     {
         private string id;
         private string name;
-        private float price;
+        private int price;
         private string description;
         private string image;
         private int stock;
@@ -42,7 +42,7 @@ namespace onlineShop.product.models
 
             this.id = propr[0];
             this.name = propr[1];
-            this.price = float.Parse(propr[2]);
+            this.price = int.Parse(propr[2]);
             this.description = propr[3];
             this.image = propr[4];
             this.stock = Int32.Parse(propr[5]);
@@ -83,7 +83,7 @@ namespace onlineShop.product.models
             set { name = value; }
         }
 
-        public float Price
+        public int Price
         {
             get { return price; }
             set { price = value; }

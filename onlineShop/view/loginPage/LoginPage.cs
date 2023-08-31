@@ -23,6 +23,7 @@ namespace onlineShop.view.loginPage
         private OrderDetailsService orderDetailsService;
         private TextBox password;
         private TextBox username;
+        private User user;
 
         public LoginPage(MainPage mainPage, ProductService productService, OrderService orders, OrderDetailsService orderDetails, UserService userService)
         {
@@ -30,8 +31,8 @@ namespace onlineShop.view.loginPage
 
             this.users = userService;
 
+
             setMainContainer();
-            setLoginContainer();
 
             this.form = mainPage;
             this.produse = productService;
@@ -40,30 +41,17 @@ namespace onlineShop.view.loginPage
 
             mainPage.Controls.Add(this);
         }
-
-
-        public bool verifyUser(string username, string password)
-        {
-            for(int i=0; i < users.Users.Count(); i++)
-            {
-                if (users.Users[i].Username.Equals(username) == true && users.Users[i].Password.Equals(password) == true)
-                {
-                    return true;
-                }
-            }
-
-            return false;
-        }
+        
          
-        public bool validateLogin(TextBox username, TextBox password)
+        public bool validateLogin(string username, string password)
         {
             string text = "";
 
-            if (username.Text.Equals(""))
+            if (username.Equals(""))
             {
                 text += "Enter your username\n";
             }
-            if (password.Text.Equals(""))
+            if (password.Equals(""))
             {
                 text += "Enter your password\n";
             }
@@ -101,6 +89,10 @@ namespace onlineShop.view.loginPage
             username.Location = new Point(55, 50);
             username.Size = new Size(500, 50);
 
+            //username.TextChanged += username_TextChanged;
+
+            //username.Text = "TEXT";
+
             pnlLine1.Location = new Point(0, 100);
             pnlLine1.Size = new Size(500, 3);
             pnlLine1.BackColor = Color.PaleTurquoise;
@@ -114,6 +106,8 @@ namespace onlineShop.view.loginPage
             password.Multiline = true;
             password.Location = new Point(55, 151);
             password.Size = new Size(500, 50);
+
+            //password.TextChanged += password_TextChanged;
 
             pnlLine2.Location = new Point(0, 200);
             pnlLine2.Size = new Size(500, 3);
@@ -174,24 +168,44 @@ namespace onlineShop.view.loginPage
 
         }
 
+        private void username_TextChanged(object sender, EventArgs e)
+        {
+            user.Username = username.Text;
+        }
+        private void password_TextChanged(object sender, EventArgs e)
+        {
+            user.Password = password.Text;
+        }
+
+       
+
         private void login_Click(object sender, EventArgs e)
         {
-
-            if (validateLogin(username, password) == true)
+            
+            if (validateLogin(this.username.Text, this.password.Text) == true)
             {
-                if (verifyUser(username.Text, password.Text) == true)
+                if (users.verifyUser(this.username.Text, this.password.Text) == true)
                 {
+                    this.form.user = users.findUserByUsername(username.Text);
                     form.removeControl("pnlLogin");
+
 
                     this.PerformLayout();
 
-                    form.setProductsPage(produse, orderService, orderDetailsService);
+                    form.setProductsPage();
+
+                   
                 }
                 else
                 {
                     MessageBox.Show("Incorrect username or password", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+        }
+
+        public User returnUser()
+        {
+            return this.user;
         }
 
     }

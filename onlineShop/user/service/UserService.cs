@@ -93,6 +93,30 @@ namespace onlineShop.user.service
 
         }
 
-        public List<User> Users { get { return users; } }
+        public bool verifyUser(string username, string password)
+        {
+            for (int i = 0; i < users.Count(); i++)
+            {
+                if (users[i].Username.Equals(username) == true && users[i].Password.Equals(password) == true)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        public User findUserByUsername(string username)
+        {
+            for(int i = 0; i < users.Count(); i++)
+            {
+                if (users[i].Username.Equals(username))
+                {
+                    return users[i];
+                }
+            }
+
+            return null;
+        }
     }
 }

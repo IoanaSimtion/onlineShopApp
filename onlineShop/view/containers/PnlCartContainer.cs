@@ -42,8 +42,7 @@ namespace onlineShop.view.containers
 
 
         public void attachOrderCards()
-        {
-            
+        {           
 
             productService = new ProductService();
 
@@ -55,7 +54,7 @@ namespace onlineShop.view.containers
 
                 Product prod = productService.findProductById(item.Id);
 
-                base.Controls.Add(new OrderCard(main, this, prod.Id, prod.Name, prod.Price, prod.Description, item.Cantitate, x, y,orderService,orderDetailsService,productService));
+                base.Controls.Add(new OrderCard(main, this, prod.Id, prod.Name, prod.Price*item.Cantitate, prod.Description, item.Cantitate, x, y,orderService,orderDetailsService,productService));
 
                 y += 300;
 

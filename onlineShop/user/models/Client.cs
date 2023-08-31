@@ -13,6 +13,7 @@ namespace onlineShop.user.models
         private DateTime ultimaComanda;
         private bool blocked;
 
+
         public Client(string properties) : base(properties)
         {
             string[] propr = properties.Split(",");

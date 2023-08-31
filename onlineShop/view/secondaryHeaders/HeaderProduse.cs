@@ -95,7 +95,7 @@ namespace onlineShop.view.secondaryHeaders
 
             this.PerformLayout();
 
-            form.setProductsPage(produse,orderService,orderDetailsService);
+            form.setProductsPage();
 
 
         }
@@ -108,7 +108,7 @@ namespace onlineShop.view.secondaryHeaders
 
             this.PerformLayout();
 
-            form.setProductsPage(produse,orderService,orderDetailsService);
+            form.setProductsPage();
         }
 
         void sortareCrescPret()
@@ -120,7 +120,7 @@ namespace onlineShop.view.secondaryHeaders
 
             this.PerformLayout();
 
-            form.setProductsPage(produse,orderService,orderDetailsService);
+            form.setProductsPage();
         }
         
         void sortareDescrescPret()
@@ -132,7 +132,7 @@ namespace onlineShop.view.secondaryHeaders
 
             this.PerformLayout();
 
-            form.setProductsPage(produse,orderService,orderDetailsService);
+            form.setProductsPage();
         }
 
         private void filtru_Click(object sender, EventArgs e)

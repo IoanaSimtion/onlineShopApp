@@ -23,6 +23,7 @@ namespace onlineShop.utils
         public static readonly string CART_PANEL = "pnlCart";
         public static readonly string MENU_PANEL = "pnlMenu";
         public static readonly string CHECKOUT_PANEL = "pnlCheckout";
+        public static readonly string CHECKOUT_PANEL2 = "pnlCheckout2";
         public static readonly string LOGIN_PANEL = "pnlLogin";
 
 

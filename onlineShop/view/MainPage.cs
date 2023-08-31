@@ -30,10 +30,8 @@ namespace onlineShop.view
         
         public CartActions cartActions;
         public ProductService productService;
-
         public User user;
         public UserService userService;
-
         public OrderDetailsService orderDetailsService;
         public OrderService orderService;
         
@@ -41,9 +39,7 @@ namespace onlineShop.view
 
         public MainPage()
         {
-            InitializeComponent();
-
-            user = new User("client, noe902wef, marcus@gmail.com, PArolAmarCUS, Marcus Stoica, Romania Bucuresti Sectorul 2 Str Livezii Nr 11, True, 12 / 05 / 2023, False");
+            InitializeComponent();                                
 
             productService = new ProductService();
 
@@ -56,11 +52,11 @@ namespace onlineShop.view
 
             this.WindowState = FormWindowState.Maximized;
 
-            setLoginPage(productService, orderService, orderDetailsService);
+            setLoginPage();
 
             //setHomePage();
 
-            //setProductsPage(productService,orderService,orderDetailsService);
+            //setProductsPage();
 
             //setCartPage();   
 
@@ -72,17 +68,24 @@ namespace onlineShop.view
 
         }
 
-        public void setLoginPage(ProductService productService, OrderService orders, OrderDetailsService orderDetails)
+        public void setLoginPage()
         {
 
-            LoginPage loginPage = new LoginPage(this, productService, orders, orderDetails, userService);
+            LoginPage loginPage = new LoginPage(this,productService, orderService, orderDetailsService, userService);
+         
         }
 
-        public void setCheckoutPage(OrderService orders, OrderDetailsService orderDetails, ProductService products)
+        public void setCheckoutPage1(OrderService orders, OrderDetailsService orderDetails, ProductService products)
         {
-            CheckoutPage checkout = new CheckoutPage(this,orders,orderDetails,products);
+            CheckoutPage checkout = new CheckoutPage(this,user,orders,orderDetails,products);
 
             this.Controls.Add(checkout);
+        }
+        public void setCheckoutPage2(OrderService orders, OrderDetailsService orderDetails, ProductService products)
+        {
+            CheckoutPage2 checkout2 = new CheckoutPage2(this,user,orders,orderDetails,products);
+
+            this.Controls.Add(checkout2);
         }
 
         public void setHomePage()
@@ -90,9 +93,9 @@ namespace onlineShop.view
             Home home = new Home(this);
         }
 
-        public void setProductsPage(ProductService productService, OrderService orders, OrderDetailsService orderDetails)
+        public void setProductsPage()
         {
-            ProductsPage productsPage = new ProductsPage(this,productService,orders,orderDetails);
+            ProductsPage productsPage = new ProductsPage(this, productService, orderService, orderDetailsService);
         }
 
         public void setCartPage(OrderService orders, OrderDetailsService orderDetails, ProductService products)

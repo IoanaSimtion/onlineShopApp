@@ -65,7 +65,7 @@ namespace onlineShop.view.footers
 
             this.PerformLayout();
 
-            form.setProductsPage(productService,orderService,orderDetailsService);
+            form.setProductsPage();
 
         }
         
@@ -75,7 +75,7 @@ namespace onlineShop.view.footers
 
             this.PerformLayout();
 
-            form.setCheckoutPage(orderService,orderDetailsService,productService);
+            form.setCheckoutPage1(orderService,orderDetailsService,productService);
 
         }
 
