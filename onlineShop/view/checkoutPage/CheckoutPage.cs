@@ -17,6 +17,7 @@ namespace onlineShop.view.checkoutPage
     internal class CheckoutPage : Panel
     {
         private User utilizator;
+        private CheckoutInfoPanel infoPanel;
         public CheckoutPage(MainPage main, User user, OrderService orders, OrderDetailsService orderDetails, ProductService products)
         {
             this.Dock = DockStyle.Fill;
@@ -25,14 +26,16 @@ namespace onlineShop.view.checkoutPage
 
             this.utilizator = user;
 
+            this.infoPanel = new CheckoutInfoPanel();
+
             this.loadCheckoutPage(main,orders,orderDetails,products);
 
         }
 
         public void loadCheckoutPage(MainPage form, OrderService orders, OrderDetailsService orderDetails, ProductService products)
         {
-            this.Controls.Add(new PnlCheckoutContainer(this, form, utilizator, orders, orderDetails, products));
-            this.Controls.Add(new CheckoutFooter(this,form, orders, orderDetails, products));
+            this.Controls.Add(new PnlCheckoutContainer(this, form, utilizator, orders, orderDetails, products,infoPanel));
+            this.Controls.Add(new CheckoutFooter(this,form, orders, orderDetails, products,infoPanel));
             this.Controls.Add(new CheckoutHeader(this, form));
         }
     }

@@ -36,6 +36,8 @@
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -114,11 +116,33 @@
             this.textBox2.TabIndex = 7;
             this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(629, 90);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.PasswordChar = '*';
+            this.textBox3.Size = new System.Drawing.Size(125, 27);
+            this.textBox3.TabIndex = 8;
+            // 
+            // linkLabel1
+            // 
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Location = new System.Drawing.Point(108, 220);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(76, 20);
+            this.linkLabel1.TabIndex = 9;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "linkLabel1";
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
+            this.linkLabel1.Click += new System.EventHandler(this.linkLabel1_Click);
+            // 
             // mockupClick
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.linkLabel1);
+            this.Controls.Add(this.textBox3);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.checkBox1);
@@ -145,5 +169,7 @@
         private CheckBox checkBox1;
         private TextBox textBox1;
         private TextBox textBox2;
+        private TextBox textBox3;
+        private LinkLabel linkLabel1;
     }
 }

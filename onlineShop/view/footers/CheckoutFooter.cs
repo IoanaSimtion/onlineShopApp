@@ -1,6 +1,7 @@
 ﻿using onlineShop.order.service;
 using onlineShop.orderDetails.service;
 using onlineShop.product.service;
+using onlineShop.view.checkoutPage;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +18,8 @@ namespace onlineShop.view.footers
         private OrderDetailsService orderDetailsService;
         private ProductService productService;
         MainPage form;
-        public CheckoutFooter(Panel panel, MainPage mainPage, OrderService orders, OrderDetailsService orderDetails, ProductService products)
+        public CheckoutInfoPanel info;
+        public CheckoutFooter(Panel panel, MainPage mainPage, OrderService orders, OrderDetailsService orderDetails, ProductService products, CheckoutInfoPanel infoPanel)
         {
 
             this.form = mainPage;
@@ -25,6 +27,7 @@ namespace onlineShop.view.footers
             this.productService = products;
             this.orderDetailsService = orderDetails;
             this.orderService=orders;
+            this.info = infoPanel;
 
             next = new Button();
             back = new Button();
@@ -68,12 +71,14 @@ namespace onlineShop.view.footers
 
         private void next_Click(object sender, EventArgs e)
         {
-            form.removeControl("pnlCheckout");
+            if (info.validateInfo())
+            {
+                form.removeControl("pnlCheckout");
 
-            this.PerformLayout();
+                this.PerformLayout();
 
-            form.setCheckoutPage2(orderService,orderDetailsService,productService);
-
+                form.setCheckoutPage2(orderService, orderDetailsService, productService);
+            }
         }
     }
 }

@@ -106,6 +106,7 @@ namespace onlineShop.view.loginPage
             password.Multiline = true;
             password.Location = new Point(55, 151);
             password.Size = new Size(500, 50);
+            password.PasswordChar = '*';
 
             //password.TextChanged += password_TextChanged;
 

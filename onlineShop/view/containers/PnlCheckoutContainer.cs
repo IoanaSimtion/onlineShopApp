@@ -27,7 +27,7 @@ namespace onlineShop.view.containers
         private ProductService produse;
         private Product produs;
 
-        public PnlCheckoutContainer(Panel panel, MainPage main, User user, OrderService orders, OrderDetailsService orderDetails, ProductService products) : base(panel)
+        public PnlCheckoutContainer(Panel panel, MainPage main, User user, OrderService orders, OrderDetailsService orderDetails, ProductService products, CheckoutInfoPanel infoPanel) : base(panel)
         {
             cartActions = main.cartActions;
             this.orderService = orders;
@@ -37,7 +37,7 @@ namespace onlineShop.view.containers
 
             this.orderService = new OrderService();
 
-            this.Controls.Add(new CheckoutInfoPanel());
+            this.Controls.Add(infoPanel);
 
             this.createOrder();
         }

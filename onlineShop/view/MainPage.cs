@@ -87,11 +87,17 @@ namespace onlineShop.view
 
             this.Controls.Add(checkout2);
         }
-
-        public void setHomePage()
+         public void setCompletedCheckoutPage(OrderService orders, OrderDetailsService orderDetails, ProductService products)
         {
-            Home home = new Home(this);
+            CheckoutComplete checkoutComplete = new CheckoutComplete(this,user,orders,orderDetails,products);
+
+            this.Controls.Add(checkoutComplete);
         }
+
+        //public void setHomePage()
+        //{
+        //    Home home = new Home(this);
+        //}
 
         public void setProductsPage()
         {

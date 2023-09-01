@@ -29,7 +29,7 @@ namespace onlineShop.view.footers
             finish = new Button();
             back = new Button();
 
-            finish.Text = "Next";
+            finish.Text = "Finish";
             finish.Location = new Point(1550, 40);
             finish.Size = new Size(300, 60);
             finish.Font = new Font("Century Gothic", 14, FontStyle.Regular);
@@ -38,7 +38,7 @@ namespace onlineShop.view.footers
 
             finish.Click += finish_Click;
 
-            back.Text = "Back";
+            back.Text = "Cancel";
             back.Location = new Point(50, 40);
             back.Size = new Size(300, 60);
             back.Font = new Font("Century Gothic", 14, FontStyle.Regular);
@@ -68,11 +68,11 @@ namespace onlineShop.view.footers
 
         private void finish_Click(object sender, EventArgs e)
         {
-            form.removeControl("pnlCheckout");
+            form.removeControl("pnlCheckout2");
 
             this.PerformLayout();
 
-
+            form.setCompletedCheckoutPage(orderService, orderDetailsService, productService);
         }
     }
 }

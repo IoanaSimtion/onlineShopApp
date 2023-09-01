@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace onlineShop.view.checkoutPage
 {
-    internal class CheckoutInfoPanel : Panel
+    public class CheckoutInfoPanel : Panel
     {
         private TextBox firstName;
         private TextBox lastName;
@@ -20,7 +20,7 @@ namespace onlineShop.view.checkoutPage
             setInfoPanel();
         }
 
-        private bool validateInfo()
+        public bool validateInfo()
         {
             string text = "";
 
