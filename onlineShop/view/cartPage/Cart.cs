@@ -1,4 +1,7 @@
-﻿using onlineShop.utils;
+﻿using onlineShop.order.service;
+using onlineShop.orderDetails.service;
+using onlineShop.product.service;
+using onlineShop.utils;
 using onlineShop.view.containers;
 using onlineShop.view.footers;
 using onlineShop.view.headers;
@@ -12,13 +15,13 @@ namespace onlineShop.view.cartPage
 {
     internal class Cart : Panel
     {
-        public Cart(MainPage form)
+        public Cart(MainPage form, OrderService orders, OrderDetailsService orderDetails, ProductService products)
         {
             this.Name = Constants.CART_PANEL;
 
             this.Dock = DockStyle.Fill;
 
-            this.loadCart(form);
+            this.loadCart(form,orders,orderDetails,products);
         }
 
         public void removeControl(String name)
@@ -46,10 +49,10 @@ namespace onlineShop.view.cartPage
 
         }
 
-        public void loadCart(MainPage form)
+        public void loadCart(MainPage form, OrderService orders, OrderDetailsService orderDetails, ProductService products)
         {
-            this.Controls.Add(new PnlCartContainer(this, form));
-            this.Controls.Add(new CartFooter(this, form));
+            this.Controls.Add(new PnlCartContainer(this, form,orders,orderDetails,products));
+            this.Controls.Add(new CartFooter(this, form,orders,orderDetails,products));
             this.Controls.Add(new CartHeader(this, form));
         }
     }

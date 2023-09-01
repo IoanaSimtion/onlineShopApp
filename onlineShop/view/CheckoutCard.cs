@@ -13,22 +13,21 @@ using System.Threading.Tasks;
 namespace onlineShop.view
 {
 
-    internal class OrderCard : Panel
+    internal class CheckoutCard : Panel
     {
         private Panel pnlHeader;
         private Panel pnlContent;
         private LinkLabel titlu;
         private Label descriere;
-        private Button remove;
         private Label pret;
-        private ComboBox cantitate;
+        private Label cantitate;
         private MainPage mainPage;
         private string id;
         private int cantitateProd;
         private OrderDetailsService orderDetailsService;
         private OrderService orderService;
         private ProductService productService;
-        public OrderCard(MainPage form, Panel parent, string id, string name, float price, string description, int amount, int x, int y, OrderService orders, OrderDetailsService orderDetails, ProductService products)
+        public CheckoutCard(MainPage form, Panel parent, string id, string name, float price, string description, int amount, int x, int y, OrderService orders, OrderDetailsService orderDetails, ProductService products)
         {
             this.orderDetailsService = orderDetails;
             this.orderService = orders;
@@ -51,22 +50,11 @@ namespace onlineShop.view
             titlu.Font = new Font("Century Gothic", 14, FontStyle.Regular);
             titlu.Size = new Size(100, 100);
 
-            cantitate = new ComboBox();
+            cantitate = new Label();
             cantitate.Text = amount.ToString();
-            cantitate.Location = new Point(830, 10);
-            cantitate.Width = 50;
-            cantitate.Items.Add("1");
-            cantitate.Items.Add("2");
-            cantitate.Items.Add("3");
-            cantitate.Items.Add("4");
-            cantitate.Items.Add("5");
-            cantitate.Items.Add("6");
-            cantitate.Items.Add("7");
-            cantitate.Items.Add("8");
-            cantitate.Items.Add("9");
-            cantitate.Items.Add("10");
-
-            cantitate.SelectedIndexChanged += cantitate_SelectedIndexChanged;
+            cantitate.Location = new Point(840, 10);
+            cantitate.Size = new Size(30, 20);
+            cantitate.BackColor = Color.White;
 
 
             pnlHeader = new Panel();
@@ -80,7 +68,7 @@ namespace onlineShop.view
         }
         private void panelContent(string description, float price)
         {
-            
+
 
             descriere = new Label();
             descriere.Text = description + "\n";
@@ -91,16 +79,7 @@ namespace onlineShop.view
             descriere.BackColor = Color.White;
             descriere.BorderStyle = BorderStyle.FixedSingle;
 
-            remove = new Button();
-            remove.Text = "Remove";
-            remove.Font = new Font("Century Gothic", 11, FontStyle.Regular);
-            remove.Location = new Point(730, 150);
-            remove.Size = new Size(150, 40);
-            remove.ForeColor = Color.Red;
-            remove.BackColor = Color.White;
-
-            remove.Click += remove_Click;
-
+           
             pret = new Label();
             pret.Width = 130;
             pret.Text = "Price: $" + price.ToString();
@@ -113,31 +92,12 @@ namespace onlineShop.view
             pnlContent.BackColor = Color.FromArgb(240, 251, 255);
 
             pnlContent.Controls.Add(descriere);
-            pnlContent.Controls.Add(remove);
             pnlContent.Controls.Add(pret);
             Controls.Add(pnlContent);
             pnlContent.BringToFront();
         }
 
-        private void cantitate_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-            cantitateProd = int.Parse(cantitate.SelectedItem.ToString());
-
-            mainPage.cartActions.updateItem(id, cantitateProd);
-
-        }
 
 
-        private void remove_Click(object sender, EventArgs e)
-        {
-            this.mainPage.cartActions.deleteItem(id);
-
-            mainPage.removeControl("pnlCart");
-
-            this.PerformLayout();
-
-            mainPage.setCartPage(orderService,orderDetailsService,productService);
-        }
     }
 }

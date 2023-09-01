@@ -12,4 +12,8 @@
     <Folder Include="orderDetails\service\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="PdfSharp" Version="1.50.5147" />
+  </ItemGroup>
+
 </Project>

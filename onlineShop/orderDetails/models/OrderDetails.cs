@@ -8,6 +8,7 @@ namespace onlineShop.orderDetails.models
 {
     public class OrderDetails
     {
+   
         private string orderId;
         private string productId;
         private int price;
@@ -43,6 +44,13 @@ namespace onlineShop.orderDetails.models
         {
             get { return quantity; }
             set { quantity = value; }
+        }
+
+        public string returnSave()
+        {
+            string save = this.orderId + "," + this.productId + "," + this.price + "," + this.quantity;
+
+            return save;
         }
     }
 }

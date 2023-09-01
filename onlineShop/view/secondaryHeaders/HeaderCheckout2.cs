@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace onlineShop.view.secondaryHeaders
 {
-    internal class HeaderCart : Header
+    internal class HeaderCheckout2 : Header
     {
-        public HeaderCart(Panel panel) : base(panel)
+        public HeaderCheckout2(Panel panel) : base(panel)
         {
             base.ResetText();
-            base.Label = "Your cart";
-            base.Name = "pnlHeaderCart";
-            
+            base.Label = "Checkout: Overview";
+
+            base.Name = "pnlCheckoutHeader2";
         }
     }
 }

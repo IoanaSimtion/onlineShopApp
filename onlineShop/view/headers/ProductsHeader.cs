@@ -1,7 +1,10 @@
-﻿using onlineShop.product.service;
+﻿using onlineShop.order.service;
+using onlineShop.orderDetails.service;
+using onlineShop.product.service;
 using onlineShop.utils;
 using onlineShop.view.cartPage;
 using onlineShop.view.menuPanel;
+using onlineShop.view.secondaryHeaders;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,14 +21,18 @@ namespace onlineShop.view.headers
         private Label cart;
         private Label profile;
         private Label menu;
+        private OrderService orderService;
+        private OrderDetailsService orderDetailsService;
         MainPage form;
         Panel pnl;
         private ProductService produse;
-        public ProductsHeader(Panel panel, MainPage mainPage, ProductService products) : base(panel)
+        public ProductsHeader(Panel panel, MainPage mainPage, ProductService products, OrderService orders, OrderDetailsService orderDetails) : base(panel)
         {
             this.form = mainPage;
             this.pnl = panel;
             this.produse = products;
+            this.orderDetailsService = orderDetails;
+            this.orderService = orders;
 
             this.Name = Constants.PRODUCTS_HEADER;
             base.Height = 94 + 53;           
@@ -73,7 +80,7 @@ namespace onlineShop.view.headers
 
             menu.Click += menu_Click;
 
-            panel.Controls.Add(new HeaderProduse(this, panel, mainPage,produse));
+            panel.Controls.Add(new HeaderProduse(this, panel, mainPage,produse,orders,orderDetails));
             base.Controls.Add(cart);
             base.Controls.Add(profile);
             //base.Controls.Add(menu);
@@ -87,7 +94,7 @@ namespace onlineShop.view.headers
 
             this.PerformLayout();
 
-            form.setCartPage();                        
+            form.setCartPage(orderService,orderDetailsService,produse);                        
 
         } 
         

@@ -1,4 +1,6 @@
-﻿using onlineShop.product.service;
+﻿using onlineShop.order.service;
+using onlineShop.orderDetails.service;
+using onlineShop.product.service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,9 +28,13 @@ namespace onlineShop.view.filterPanel
         private bool pretMaximSchimbat;
         private List<string> sizes;
         private List<string> colors;
+        private OrderDetailsService orderDetailsService;
+        private OrderService orderService;
 
-        public Filter(Panel panel, MainPage main)
+        public Filter(Panel panel, MainPage main, OrderService orders, OrderDetailsService orderDetails)
         {
+            this.orderDetailsService = orderDetails;
+            this.orderService = orders;
             this.pnl = panel;
             this.Parent = panel;
             this.form = main;
@@ -188,7 +194,7 @@ namespace onlineShop.view.filterPanel
 
             this.PerformLayout();
 
-            form.setProductsPage(produse);
+            form.setProductsPage();
         }
     }
 }

@@ -16,7 +16,6 @@ namespace onlineShop.orderDetails.service
         {
             orderDetails = new List<OrderDetails>();
 
-
         }
 
         public void afisare()
@@ -29,5 +28,43 @@ namespace onlineShop.orderDetails.service
         }
 
         public List<OrderDetails> Orders { get { return orderDetails; } }
+
+        public void addItem(OrderDetails order)
+        {
+            this.orderDetails.Add(order);
+        }
+        public void removeItem(OrderDetails order)
+        {
+            this.orderDetails.Remove(order);
+        }
+
+        public string saveOrderDetails()
+        {
+            string text = "";
+
+            for(int i = 0; i < orderDetails.Count(); i++)
+            {
+                text += orderDetails[i].returnSave();
+                text += "\n";
+            }
+
+            return text;
+        }
+
+        public void save()
+        {
+            string data = saveOrderDetails();
+
+            string currentDirectory = Directory.GetCurrentDirectory();
+            DirectoryInfo parentDirectory = Directory.GetParent(currentDirectory);
+
+            StreamWriter streamWriter = new StreamWriter(parentDirectory.FullName + @"/data/orderDetails.txt");
+
+            streamWriter.Write(data);
+
+            streamWriter.Close();
+
+        }
+
     }
 }

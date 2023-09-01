@@ -1,4 +1,6 @@
-﻿using onlineShop.product.models;
+﻿using onlineShop.order.service;
+using onlineShop.orderDetails.service;
+using onlineShop.product.models;
 using onlineShop.product.service;
 using onlineShop.system.cart;
 using onlineShop.utils;
@@ -15,11 +17,15 @@ namespace onlineShop.view.containers
     {
         //private CartFooter cartFooter;
         private ProductService productService;
+        private OrderDetailsService orderDetailsService;
+        private OrderService orderService;
         private Label empty;
         public MainPage main;
-        public PnlCartContainer(Panel panel, MainPage mainPage) : base(panel)
+        public PnlCartContainer(Panel panel, MainPage mainPage, OrderService orders, OrderDetailsService orderDetails, ProductService products) : base(panel)
         {
-
+            this.orderDetailsService = orderDetails;
+            this.orderService = orders;
+            this.productService = products;
             empty = new Label();
             empty.Text = "Your cart is empty";
             empty.Font = new Font("Century Gothic", 18, FontStyle.Regular);
@@ -36,8 +42,7 @@ namespace onlineShop.view.containers
 
 
         public void attachOrderCards()
-        {
-            
+        {           
 
             productService = new ProductService();
 
@@ -49,7 +54,7 @@ namespace onlineShop.view.containers
 
                 Product prod = productService.findProductById(item.Id);
 
-                base.Controls.Add(new OrderCard(main, this, prod.Id, prod.Name, prod.Price, prod.Description, item.Cantitate, x, y));
+                base.Controls.Add(new OrderCard(main, this, prod.Id, prod.Name, prod.Price*item.Cantitate, prod.Description, item.Cantitate, x, y,orderService,orderDetailsService,productService));
 
                 y += 300;
 
