@@ -66,5 +66,9 @@ namespace onlineShop.orderDetails.service
 
         }
 
+        public int numarProduse()
+        {
+            return Orders.Count;
+        }
     }
 }

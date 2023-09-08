@@ -20,7 +20,6 @@ namespace onlineShop.view.containers
     {
         private int x;
         private int y;
-        private CartActions cartActions;
         private User utilizator;
         private OrderService orderService;
         private OrderDetailsService orderDetailsService;
