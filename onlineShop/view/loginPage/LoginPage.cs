@@ -193,7 +193,14 @@ namespace onlineShop.view.loginPage
 
                     this.PerformLayout();
 
-                    form.setProductsPage();
+                    if (users.findUserByUsername(username.Text).Type.Equals("client"))
+                    {
+                        form.setProductsPage();
+                    }
+                    else
+                    {
+                        form.setAdminPage();
+                    }
 
                    
                 }

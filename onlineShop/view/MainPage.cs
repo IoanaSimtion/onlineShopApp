@@ -5,6 +5,7 @@ using onlineShop.product.service;
 using onlineShop.system.cart;
 using onlineShop.user.models;
 using onlineShop.user.service;
+using onlineShop.view.admin.containers;
 using onlineShop.view.cartPage;
 using onlineShop.view.checkoutPage;
 using onlineShop.view.containers;
@@ -73,6 +74,11 @@ namespace onlineShop.view
 
             LoginPage loginPage = new LoginPage(this,productService, orderService, orderDetailsService, userService);
          
+        }
+
+        public void setAdminPage()
+        {
+            PnlAdmin adminPage = new PnlAdmin(this);
         }
 
         public void setCheckoutPage1(OrderService orders, OrderDetailsService orderDetails, ProductService products)
