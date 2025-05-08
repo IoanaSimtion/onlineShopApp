@@ -14,7 +14,7 @@ namespace onlineShop.view.checkoutPage
         public CheckoutInfoPanel()
         {
             this.Location = new Point(700, 150);
-            this.BackColor = Color.FromArgb(240, 251, 255);
+            this.BackColor = Color.FromArgb(252, 237, 241);
             this.Width = 500;
             this.Height = 250;
             setInfoPanel();

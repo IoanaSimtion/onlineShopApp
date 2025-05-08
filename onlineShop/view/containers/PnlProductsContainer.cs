@@ -30,7 +30,7 @@ namespace onlineShop.view.containers
             List<Product> products = productService.Products;
                        
 
-            int x = 0, y = 80, k = 1;
+            int x = 0, y = 40, k = 1;
 
             if (products.Count() == 0)
             {
@@ -49,7 +49,7 @@ namespace onlineShop.view.containers
 
                 Card card = ProductMappers.productToCardMapper(container, products[i], x, y, form);
 
-                x += card.Width + 100;
+                x += card.Width + 50;
 
                 if (k == 3)
                 {

@@ -17,6 +17,7 @@ namespace onlineShop.product.service
             products = new List<Product>();
 
             this.load();
+
         }
 
         public List<Product> Products { get { return products; } }

@@ -40,6 +40,7 @@ namespace onlineShop.system.cart
             {
                 if (item.Id.Equals(id))
                 {
+                    Debug.WriteLine("YUP");
                     return item;
                 }
             }

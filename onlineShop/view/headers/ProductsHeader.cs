@@ -45,17 +45,17 @@ namespace onlineShop.view.headers
             cartIcon.Location = new Point(1835, 20);
             cartIcon.SizeMode = PictureBoxSizeMode.Zoom;
             cartIcon.Size = new Size(57, 41);
-            cartIcon.BackColor = Color.FromArgb(74, 85, 162);
+            cartIcon.BackColor = Color.FromArgb(128, 0, 64);
 
             cartIcon.Click += cart_Click;
 
-            cart.Text = "Cart";
-            cart.Location = new Point(1840, 65);
+            cart.Text = "My Cart";
+            cart.Location = new Point(1825, 65);
             cart.Size = new Size(100, 100);
             cart.ForeColor = Color.White;
             cart.Font = new Font("Century Gothic", 10, FontStyle.Bold);
 
-            profileIcon = new PictureBox();
+            /*profileIcon = new PictureBox();
             profile = new Label();
 
             profileIcon.Image = Image.FromFile("D:\\mycode\\icons\\1160865.png");
@@ -70,7 +70,7 @@ namespace onlineShop.view.headers
             profile.Location = new Point(1685, 65);
             profile.Size = new Size(150, 100);
             profile.ForeColor = Color.White;
-            profile.Font = new Font("Century Gothic", 10, FontStyle.Bold);
+            profile.Font = new Font("Century Gothic", 10, FontStyle.Bold);*/
 
             menu.Text = "Menu";
             menu.Location = new Point(30, 65);

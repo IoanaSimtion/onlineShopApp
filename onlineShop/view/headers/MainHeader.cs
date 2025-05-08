@@ -23,7 +23,7 @@ namespace onlineShop.view.headers
             titlu.ForeColor = Color.White;
 
             this.Dock = DockStyle.Top;
-            this.BackColor = Color.FromArgb(74, 85, 162);
+            this.BackColor = Color.FromArgb(128, 0, 64);
             this.Height = 94;
 
             this.Controls.Add(titlu);
