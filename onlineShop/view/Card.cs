@@ -12,7 +12,7 @@ namespace onlineShop.view
         private Panel pnlHeader;
         private Panel pnlContent;
         private Panel pnlPhoto;
-        private LinkLabel titlu;
+        private Label titlu;
         private PictureBox pozaProdus;
         private Label descriere;
         private Button addCart;
@@ -25,7 +25,7 @@ namespace onlineShop.view
         {
             this.Parent = parent;
             this.Location = new Point(x, y);
-            this.Width = 560;
+            this.Width = 600;
             this.Height = 400;
             panelHeader(name);
             panelPhoto(image);
@@ -38,16 +38,17 @@ namespace onlineShop.view
 
         private void panelHeader(string name)
         {
-            titlu = new LinkLabel();
+            titlu = new Label();
             titlu.Text = name;
-            titlu.Location = new Point(30, 5);
+            titlu.Location = new Point(30, 7);
             titlu.Font = new Font("Century Gothic", 14, FontStyle.Regular);
-            titlu.Size = new Size(100, 100);
+            titlu.Size = new Size(400, 400);
+            titlu.ForeColor = Color.FromArgb(61, 1, 31);
 
 
             pnlHeader = new Panel();
             pnlHeader.Dock = DockStyle.Top;
-            pnlHeader.BackColor = Color.FromArgb(160, 191, 224);
+            pnlHeader.BackColor = Color.FromArgb(163, 118, 141);
             pnlHeader.Size = new Size(50, 50);
             pnlHeader.Controls.Add(titlu);
             Controls.Add(pnlHeader);
@@ -57,26 +58,30 @@ namespace onlineShop.view
         private void panelPhoto(string path)
         {
             pozaProdus = new PictureBox();
-            pozaProdus.Width = 200;
             pozaProdus.Image = Image.FromFile(path);
             pozaProdus.SizeMode = PictureBoxSizeMode.Zoom;
-            pozaProdus.Location = new Point(0, 0);
-            pozaProdus.Dock = DockStyle.Fill;
+            pozaProdus.Width = 200;
+            pozaProdus.Height = 400;
+            pozaProdus.Location = new Point(10, 10); 
 
             pnlPhoto = new Panel();
             pnlPhoto.Dock = DockStyle.Left;
             pnlPhoto.BackColor = Color.White;
-            pnlPhoto.Width = 120;
+            pnlPhoto.Width = 200;
             pnlPhoto.BorderStyle = BorderStyle.FixedSingle;
+
             pnlPhoto.Controls.Add(pozaProdus);
-            
+            pozaProdus.Anchor = AnchorStyles.None;
+            pozaProdus.Left = (pnlPhoto.Width - pozaProdus.Width) / 2;
+            pozaProdus.Top = (pnlPhoto.Height - pozaProdus.Height) / 2;
+
             Controls.Add(pnlPhoto);
         }
 
         private void panelContent(string description, float price, string id, int stock)
         {
             descriere = new Label();
-            descriere.Text = description + "\n" + "ID: " + id + "\n" + "Stock: " + stock.ToString() + "\n";
+            descriere.Text = description + "\n\n\n" + "ID: " + id + "\n\n\n" + "Stock: " + stock.ToString() + "\n\n";
             descriere.Font = new Font("Century Gothic", 10, FontStyle.Regular);
             descriere.Location = new Point(30, 30);
             descriere.Width = 360;
@@ -103,7 +108,7 @@ namespace onlineShop.view
 
             pnlContent = new Panel();
             pnlContent.Dock = DockStyle.Fill;
-            pnlContent.BackColor = Color.FromArgb(240, 251, 255);
+            pnlContent.BackColor = Color.FromArgb(242, 233, 238); 
 
             pnlContent.Controls.Add(descriere);
             pnlContent.Controls.Add(addCart);

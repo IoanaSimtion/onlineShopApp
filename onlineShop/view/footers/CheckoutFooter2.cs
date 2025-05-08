@@ -33,7 +33,7 @@ namespace onlineShop.view.footers
             finish.Location = new Point(1550, 40);
             finish.Size = new Size(300, 60);
             finish.Font = new Font("Century Gothic", 14, FontStyle.Regular);
-            finish.ForeColor = Color.FromArgb(74, 85, 162);
+            finish.ForeColor = Color.FromArgb(128, 0, 64);
             finish.BackColor = Color.White;
 
             finish.Click += finish_Click;
@@ -42,13 +42,13 @@ namespace onlineShop.view.footers
             back.Location = new Point(50, 40);
             back.Size = new Size(300, 60);
             back.Font = new Font("Century Gothic", 14, FontStyle.Regular);
-            back.ForeColor = Color.FromArgb(74, 85, 162);
+            back.ForeColor = Color.FromArgb(128, 0, 64);
             back.BackColor = Color.White;
 
             back.Click += back_Click; ;
 
             this.Dock = DockStyle.Bottom;
-            this.BackColor = Color.FromArgb(197, 223, 248);
+            this.BackColor = Color.FromArgb(232, 200, 208);
             this.Height = 150;
 
             this.Controls.Add(finish);

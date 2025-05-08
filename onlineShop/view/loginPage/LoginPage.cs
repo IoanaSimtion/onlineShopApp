@@ -72,12 +72,12 @@ namespace onlineShop.view.loginPage
 
             usernameIcon.Image = Image.FromFile("D:\\mycode\\icons\\1160865.png");
             usernameIcon.SizeMode = PictureBoxSizeMode.Zoom;
-            usernameIcon.Location = new Point(0, 58);
+            usernameIcon.Location = new Point(0, 80);
             usernameIcon.Size = new Size(52, 41);
 
             passwordIcon.Image = Image.FromFile("D:\\mycode\\icons\\download.png");
             passwordIcon.SizeMode = PictureBoxSizeMode.Zoom;
-            passwordIcon.Location = new Point(0, 150);
+            passwordIcon.Location = new Point(0, 200);
             passwordIcon.Size = new Size(52, 47);
 
             username = new TextBox();
@@ -86,16 +86,16 @@ namespace onlineShop.view.loginPage
             username.PlaceholderText = " Username";
             username.Font = new Font("Century Gothic", 16, FontStyle.Regular);
             username.Multiline = true;
-            username.Location = new Point(55, 50);
+            username.Location = new Point(55, 80);
             username.Size = new Size(500, 50);
 
             //username.TextChanged += username_TextChanged;
 
             //username.Text = "TEXT";
 
-            pnlLine1.Location = new Point(0, 100);
+            pnlLine1.Location = new Point(0, 130);
             pnlLine1.Size = new Size(500, 3);
-            pnlLine1.BackColor = Color.PaleTurquoise;
+            pnlLine1.BackColor = Color.FromArgb(232, 200, 208); ;
 
 
             password = new TextBox();
@@ -104,25 +104,25 @@ namespace onlineShop.view.loginPage
             password.PlaceholderText = " Password";
             password.Font = new Font("Century Gothic", 16, FontStyle.Regular);
             password.Multiline = true;
-            password.Location = new Point(55, 151);
+            password.Location = new Point(55, 200);
             password.Size = new Size(500, 50);
             password.PasswordChar = '*';
 
             //password.TextChanged += password_TextChanged;
 
-            pnlLine2.Location = new Point(0, 200);
+            pnlLine2.Location = new Point(0, 250);
             pnlLine2.Size = new Size(500, 3);
-            pnlLine2.BackColor = Color.PaleTurquoise;
+            pnlLine2.BackColor = Color.FromArgb(232, 200, 208);
 
-            CheckBox remember = new CheckBox();
+            /*CheckBox remember = new CheckBox();
 
             remember.Text = "Remember me";
-            remember.Location = new Point(20, 350);
-            remember.Size = new Size(300, 30);
+            remember.Location = new Point(20, 270);
+            remember.Size = new Size(300, 30);*/
 
-            pnlLoginData.BackColor = Color.White;
+            pnlLoginData.BackColor = Color.FromArgb(250, 240, 245);
             pnlLoginData.Location = new Point(750, 300);
-            pnlLoginData.Size = new(500, 400);
+            pnlLoginData.Size = new(500, 350);
 
             pnlLoginData.Controls.Add(usernameIcon);
             pnlLoginData.Controls.Add(username);
@@ -130,7 +130,7 @@ namespace onlineShop.view.loginPage
             pnlLoginData.Controls.Add(passwordIcon);
             pnlLoginData.Controls.Add(password);
             pnlLoginData.Controls.Add(pnlLine2);
-            pnlLoginData.Controls.Add(remember);
+            //pnlLoginData.Controls.Add(remember);
 
             this.Controls.Add(pnlLoginData);
 
@@ -142,10 +142,10 @@ namespace onlineShop.view.loginPage
             Label titlu = new Label();
             Label forgotPassword = new Label();
 
-            login.Image = Image.FromFile("D:\\mycode\\icons\\login.png");
+            login.Image = Image.FromFile("D:\\mycode\\icons\\new_login.png");
             login.SizeMode = PictureBoxSizeMode.Zoom;
-            login.Location = new Point(900, 700);
-            login.Size = new Size(200, 200);
+            login.Location = new Point(940, 680);
+            login.Size = new Size(100, 100);
 
             login.Click += login_Click;
 
@@ -153,12 +153,12 @@ namespace onlineShop.view.loginPage
             titlu.Size = new Size(300, 100);
             titlu.Location = new Point(850, 130);
             titlu.Font = new Font("Century Gothic", 26, FontStyle.Bold);
-            titlu.ForeColor = Color.FromArgb(74, 85, 162);
+            titlu.ForeColor = Color.FromArgb(128, 0, 64);
 
             forgotPassword.Text = "Forgot password";
             forgotPassword.Location = new Point(950, 900);
 
-            this.BackColor = Color.FromArgb(197, 223, 248);
+            this.BackColor = Color.FromArgb(232, 200, 208);
             this.Dock = DockStyle.Fill;
 
             setLoginContainer();

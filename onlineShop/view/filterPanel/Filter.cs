@@ -38,7 +38,7 @@ namespace onlineShop.view.filterPanel
             this.pnl = panel;
             this.Parent = panel;
             this.form = main;
-            this.BackColor = Color.LightBlue;
+            this.BackColor = Color.FromArgb(217, 197, 209);
             this.Size = new Size(400, 470);
             this.Location = new Point(1500,149);
 
@@ -74,15 +74,15 @@ namespace onlineShop.view.filterPanel
             culoare = new Label();
             culori = new CheckedListBox();
 
-            culori.Items.Add("Albastru");
-            culori.Items.Add("Rosu");
-            culori.Items.Add("Galben");
-            culori.Items.Add("Verde");
-            culori.Items.Add("Portocaliu");
-            culori.Items.Add("Roz");
+            culori.Items.Add("Blue");
+            culori.Items.Add("Red");
+            culori.Items.Add("Yellow");
+            culori.Items.Add("Gren");
+            culori.Items.Add("Orange");
+            culori.Items.Add("Pink");
             culori.Items.Add("Violet");
-            culori.Items.Add("Alb");
-            culori.Items.Add("Negru");
+            culori.Items.Add("White");
+            culori.Items.Add("Black");
 
             culori.ItemCheck += culori_ItemCheck;
 

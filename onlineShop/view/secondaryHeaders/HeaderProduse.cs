@@ -24,7 +24,7 @@ namespace onlineShop.view.secondaryHeaders
         public HeaderProduse(Panel panel, Panel container, MainPage mainPage, ProductService products, OrderService orders, OrderDetailsService orderDetails) : base(panel)
         {
             base.ResetText();
-            base.Label = "Produse";
+            base.Label = "Products";
             base.Name = "pnlHeaderProduse";
             this.form = mainPage;
             this.pnl = panel;
@@ -51,11 +51,11 @@ namespace onlineShop.view.secondaryHeaders
             filtruIcon.Location = new Point(1680, 10);
             filtruIcon.SizeMode = PictureBoxSizeMode.Zoom;
             filtruIcon.Size = new Size(30, 30);
-            filtruIcon.BackColor = Color.FromArgb(74, 85, 162);
+            filtruIcon.BackColor = Color.FromArgb(232, 200, 208);
 
             filtruIcon.Click += filtru_Click;
 
-            this.Controls.Add(filtruIcon);
+            //this.Controls.Add(filtruIcon);
         }
         public void sortProducts()
         {

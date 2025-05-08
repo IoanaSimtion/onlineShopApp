@@ -16,7 +16,6 @@ namespace onlineShop.view.footers
         private Button continueShopping;
         private OrderService orderService;
         private OrderDetailsService orderDetailsService;
-        
         MainPage form;
         public CartFooter(Panel panel, MainPage mainPage, OrderService orders, OrderDetailsService orderDetails, ProductService products)
         {
@@ -34,7 +33,7 @@ namespace onlineShop.view.footers
             checkout.Location = new Point(1550, 40);
             checkout.Size = new Size(300, 60);
             checkout.Font = new Font("Century Gothic", 14, FontStyle.Regular);
-            checkout.ForeColor = Color.FromArgb(74, 85, 162);
+            checkout.ForeColor = Color.FromArgb(128, 0, 64);
             checkout.BackColor = Color.White;
 
             checkout.Click += checkout_Click;
@@ -43,13 +42,13 @@ namespace onlineShop.view.footers
             continueShopping.Location = new Point(50, 40);
             continueShopping.Size = new Size(300, 60);
             continueShopping.Font = new Font("Century Gothic", 14, FontStyle.Regular);
-            continueShopping.ForeColor = Color.FromArgb(74, 85, 162);
+            continueShopping.ForeColor = Color.FromArgb(128, 0, 64);
             continueShopping.BackColor = Color.White;
 
             continueShopping.Click += continueShopping_Click;
 
             this.Dock = DockStyle.Bottom;
-            this.BackColor = Color.FromArgb(197, 223, 248);
+            this.BackColor = Color.FromArgb(232, 200, 208);
             this.Height = 150;
 
             this.Controls.Add(checkout);
@@ -71,6 +70,7 @@ namespace onlineShop.view.footers
         
         private void checkout_Click(object sender, EventArgs e)
         {
+
             form.removeControl("pnlCart");
 
             this.PerformLayout();

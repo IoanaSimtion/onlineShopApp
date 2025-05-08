@@ -23,7 +23,7 @@ namespace onlineShop.view.containers
         private ProductService produse;
         private MainPage form;
         private Label mesaj;
-        private Button home;
+        //private Button home;
         private LinkLabel pdf;
         private int totalPrice;
 
@@ -59,100 +59,110 @@ namespace onlineShop.view.containers
         {
             mesaj = new Label();
             mesaj.Text = "Thank you for your order!";
-            mesaj.Font = new Font("Century Gothic", 22, FontStyle.Bold);
-            mesaj.Location = new Point(740, 200);
+            mesaj.Font = new Font("Century Gothic", 30, FontStyle.Bold);
+            mesaj.Location = new Point(640, 200);
             mesaj.Size = new Size(700, 100);
+            mesaj.ForeColor = Color.FromArgb(128, 0, 64);
 
-            home = new Button();
-            home.Location = new Point(850, 300);
+            /*home = new Button();
+            home.Location = new Point(850, 400);
             home.Text = "Back Home";
             home.Font = new Font("Century Gothic", 14, FontStyle.Regular);
             home.Size = new Size(200, 50);
 
-            home.Click += home_Click;
+            home.Click += home_Click;*/
 
             pdf = new LinkLabel();
             pdf.Text = "download PDF";
-            pdf.Location = new Point(865, 380);
-            pdf.Font = new Font("Century Gothic", 12, FontStyle.Regular);
+            pdf.Location = new Point(820, 380);
+            pdf.Font = new Font("Century Gothic", 20, FontStyle.Regular);
             pdf.Size = new Size(200, 100);
+            pdf.Width = 600;
+            pdf.ActiveLinkColor = Color.FromArgb(128, 0, 64);
 
             pdf.Click += pdf_Click;
 
-            this.Controls.Add(home);
+            this.BackColor = Color.FromArgb(255, 250, 253);
+
+            //this.Controls.Add(home);
             this.Controls.Add(mesaj);
             this.Controls.Add(pdf);
+
+            this.BackColor = Color.FromArgb(255, 250, 253);
         }
         public void GeneratePdfWithTable(string outputPath)
         {
             using (PdfDocument document = new PdfDocument())
             {
                 PdfPage page = document.Pages.Add();
-
                 PdfGraphics graphics = page.Graphics;
 
-                PdfFont font = new PdfStandardFont(PdfFontFamily.TimesRoman, 20, PdfFontStyle.Regular);
-                PdfFont font2B = new PdfStandardFont(PdfFontFamily.TimesRoman, 14,PdfFontStyle.Bold);
-                PdfFont font2R = new PdfStandardFont(PdfFontFamily.TimesRoman, 14,PdfFontStyle.Regular);
+                PdfFont font = new PdfStandardFont(PdfFontFamily.TimesRoman, 38, PdfFontStyle.Regular);
+                PdfFont font2B = new PdfStandardFont(PdfFontFamily.TimesRoman, 14, PdfFontStyle.Bold);
+                PdfFont font2R = new PdfStandardFont(PdfFontFamily.TimesRoman, 14, PdfFontStyle.Regular);
                 PdfFont font3 = new PdfStandardFont(PdfFontFamily.TimesRoman, 14);
 
-                PdfPen pen = new PdfPen(Color.BlueViolet);
-
-                PdfTextElement titlu = new PdfTextElement("Comanda ta", font, pen);
-                titlu.Draw(graphics, new PointF(200, 10));
-                
+                PdfPen pen = new PdfPen(Color.FromArgb(255, 250, 253));
+                PdfTextElement title = new PdfTextElement("Comanda ta", font, pen);
+                title.Draw(graphics, new PointF(160, 10));
 
                 PdfTextElement pret = new PdfTextElement("Pret total: $" + totalPrice.ToString() + " (taxa inclusa)", font2R);
-                pret.Draw(graphics, new PointF(10, 200));
+                pret.Draw(graphics, new PointF(10, 240));
 
                 PdfTextElement nume = new PdfTextElement("Nume: " + utilizator.FullName, font2R);
-                nume.Draw(graphics, new PointF(10, 220));
+                nume.Draw(graphics, new PointF(10, 260));
 
                 PdfTextElement adresa = new PdfTextElement("Adresa de livrare: " + utilizator.Address, font2R);
-                adresa.Draw(graphics, new PointF(10, 240));
+                adresa.Draw(graphics, new PointF(10, 280));
 
-                // Create a PDF table
+                PdfTextElement info = new PdfTextElement("Pentru mai multe detalii despre comanda dumneavoastra apelati 0754556326.", font2R);
+                info.Draw(graphics, new PointF(10, 320));
+
+
                 PdfGrid pdfGrid = new PdfGrid();
-                pdfGrid.Columns.Add(3); // Add 3 columns
+                pdfGrid.Columns.Add(3);
 
-                // Add header row
+
                 pdfGrid.Headers.Add(1);
                 pdfGrid.Headers[0].Cells[0].Value = "Denumire";
                 pdfGrid.Headers[0].Cells[0].Style.Font = font2B;
                 pdfGrid.Headers[0].Cells[0].StringFormat.Alignment = PdfTextAlignment.Center;
+
                 pdfGrid.Headers[0].Cells[1].Value = "Pret";
                 pdfGrid.Headers[0].Cells[1].Style.Font = font2B;
                 pdfGrid.Headers[0].Cells[1].StringFormat.Alignment = PdfTextAlignment.Center;
+
                 pdfGrid.Headers[0].Cells[2].Value = "Cantitate";
                 pdfGrid.Headers[0].Cells[2].Style.Font = font2B;
                 pdfGrid.Headers[0].Cells[2].StringFormat.Alignment = PdfTextAlignment.Center;
 
-                // Add data rows
-                for (int i = 0; i < orderDetailsService.numarProduse(); i++)
+
+                foreach (var item in form.cartActions.CartItems)
                 {
-                    pdfGrid.Rows.Add();
-                    pdfGrid.Rows[i].Cells[0].Value = produse.findProductById(orderDetailsService.Orders[i].ProductId).Name;
-                    pdfGrid.Rows[i].Cells[0].Style.Font = font3;
-                    pdfGrid.Rows[i].Cells[0].StringFormat.Alignment = PdfTextAlignment.Center;
-                    pdfGrid.Rows[i].Cells[1].Value = "$"+orderDetailsService.Orders[i].Price.ToString();
-                    pdfGrid.Rows[i].Cells[1].Style.Font = font3;
-                    pdfGrid.Rows[i].Cells[1].StringFormat.Alignment = PdfTextAlignment.Center;
-                    pdfGrid.Rows[i].Cells[2].Value = orderDetailsService.Orders[i].Quantity.ToString();
-                    pdfGrid.Rows[i].Cells[2].Style.Font = font3;
-                    pdfGrid.Rows[i].Cells[2].StringFormat.Alignment = PdfTextAlignment.Center;
+                    var product = produse.findProductById(item.Id);
+                    var row = pdfGrid.Rows.Add();
+
+                    row.Cells[0].Value = product.Name;
+                    row.Cells[0].Style.Font = font3;
+                    row.Cells[0].StringFormat.Alignment = PdfTextAlignment.Center;
+
+                    row.Cells[1].Value = "$" + product.Price.ToString();
+                    row.Cells[1].Style.Font = font3;
+                    row.Cells[1].StringFormat.Alignment = PdfTextAlignment.Center;
+
+                    row.Cells[2].Value = item.Cantitate.ToString();
+                    row.Cells[2].Style.Font = font3;
+                    row.Cells[2].StringFormat.Alignment = PdfTextAlignment.Center;
                 }
 
-                // Draw the PDF grid
-                pdfGrid.Draw(page, new PointF(10, 50));
+                pdfGrid.Draw(page, new PointF(10, 70));
 
-                // Save the PDF to the specified output path
                 document.Save(outputPath);
             }
         }
 
         private void savePDF()
         {
-            // Set up SaveFileDialog to choose download location
             var saveDialog = new SaveFileDialog
             {
                 Filter = "PDF Files (*.pdf)|*.pdf",
@@ -161,7 +171,6 @@ namespace onlineShop.view.containers
 
             if (saveDialog.ShowDialog() == DialogResult.OK)
             {
-                // Copy generated PDF to the chosen location
                 var outputPath = "output.pdf";
                 File.Copy(outputPath, saveDialog.FileName, true);
                 MessageBox.Show("PDF saved successfully!");
@@ -169,9 +178,8 @@ namespace onlineShop.view.containers
         }
         private void pdf_Click(object sender, EventArgs e)
         {
-            var outputPath = "output.pdf"; // Provide the desired output path
+            var outputPath = "output.pdf"; 
             this.GeneratePdfWithTable(outputPath);
-            //MessageBox.Show("PDF generated successfully!");
 
             savePDF();
 

@@ -28,9 +28,11 @@ namespace onlineShop.view.containers
             this.productService = products;
             empty = new Label();
             empty.Text = "Your cart is empty";
-            empty.Font = new Font("Century Gothic", 18, FontStyle.Regular);
-            empty.Location = new Point(800, 300);
+            empty.Font = new Font("Century Gothic", 26, FontStyle.Regular);
+            empty.Location = new Point(770, 300);
             empty.Size = new Size(300, 300);
+            empty.Width = 1000;
+            empty.ForeColor = Color.FromArgb(128, 0, 64);
             this.Name = Constants.CART_CONTAINER;
             this.main = mainPage;
 
@@ -61,6 +63,23 @@ namespace onlineShop.view.containers
             });
         }
 
-        
+        public bool validateCartInfo()
+        {
+            string text = "";
+
+            if (empty.Text == "Your cart is empty")
+            {
+                text += "Your cart is empty \n";
+            }
+
+            if (text.Length > 0)
+            {
+                MessageBox.Show(text, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            return true;
+        }
+
     }
 }

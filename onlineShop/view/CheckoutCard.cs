@@ -17,7 +17,7 @@ namespace onlineShop.view
     {
         private Panel pnlHeader;
         private Panel pnlContent;
-        private LinkLabel titlu;
+        private Label titlu;
         private Label descriere;
         private Label pret;
         private Label cantitate;
@@ -44,11 +44,12 @@ namespace onlineShop.view
 
         private void panelHeader(string name, int amount)
         {
-            titlu = new LinkLabel();
+            titlu = new Label();
             titlu.Text = name;
             titlu.Location = new Point(50, 5);
             titlu.Font = new Font("Century Gothic", 14, FontStyle.Regular);
-            titlu.Size = new Size(100, 100);
+            titlu.Size = new Size(100, 500);
+            titlu.Width = 500;
 
             cantitate = new Label();
             cantitate.Text = amount.ToString();
@@ -59,7 +60,7 @@ namespace onlineShop.view
 
             pnlHeader = new Panel();
             pnlHeader.Dock = DockStyle.Top;
-            pnlHeader.BackColor = Color.FromArgb(160, 191, 224);
+            pnlHeader.BackColor = Color.FromArgb(163, 118, 141);
             pnlHeader.Size = new Size(50, 50);
             pnlHeader.Controls.Add(titlu);
             pnlHeader.Controls.Add(cantitate);
@@ -89,7 +90,7 @@ namespace onlineShop.view
 
             pnlContent = new Panel();
             pnlContent.Dock = DockStyle.Fill;
-            pnlContent.BackColor = Color.FromArgb(240, 251, 255);
+            pnlContent.BackColor = Color.FromArgb(255, 250, 253);
 
             pnlContent.Controls.Add(descriere);
             pnlContent.Controls.Add(pret);
